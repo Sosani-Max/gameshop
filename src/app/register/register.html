@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background-color: #0B0D3C;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    header .search-login {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    header input[type="text"] {
+      padding: 0.4rem 0.6rem;
+      border-radius: 4px;
+      border: none;
+    }
+
+    header button {
+      background: none;
+      border: 1px solid #fff;
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      margin-top: 2rem;
+      color: #0B0D3C;
+    }
+
+    .login-box {
+      background-color: #0B0D3C;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 300px;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 1rem;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-box button {
+      padding: 0.6rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .login-box .register-btn {
+      background-color: #FFC300;
+      color: #0B0D3C;
+    }
+
+    /* ✅ วงกลมใส่ภาพ */
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 2px dashed #fff;
+      margin: 0.5rem auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 0.8rem;
+      cursor: pointer;
+    }
+
+    .profile-pic:hover {
+      background-color: rgba(255,255,255,0.1);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="search-login">
+      <button>Log-in</button>
+      <input type="text" placeholder="Search game">
+    </div>
+  </header>
+
+  <main>
+    <h1>Register</h1>
+    <div class="login-box">
+      <input type="text" placeholder="Enter your Username">
+      <input type="email" placeholder="Enter your email">
+      <input type="password" placeholder="Enter your password">
+
+      <div class="profile-pic">Choose photo</div>
+
+      <a href="homelogin">
+        <button class="register-btn">Register</button>
+      </a>
+    </div>
+  </main>
+</body>
+</html>

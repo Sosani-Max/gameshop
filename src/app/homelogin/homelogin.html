@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: #f5f5f5; color: #0b1335; }
+    header { background-color: #0b1335; color: white; padding: 10px 50px; display: flex; justify-content: space-between; align-items: center; }
+    header .logo { font-size: 1.5rem; font-weight: bold; }
+    header .search-login { display: flex; align-items: center; gap: 15px; }
+    header input[type="text"] { padding: 5px 10px; border-radius: 4px; border: none; }
+    header button { background-color: white; color: #0b1335; border: none; padding: 5px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+
+    /* ✅ วงกลมเล็ก ๆ ข้าง Log-out */
+    .profile-circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b1335;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .profile-circle:hover {
+      background-color: #ddd;
+    }
+
+    h1 { text-align: center; margin: 30px 0 20px 0; font-size: 2rem; }
+
+    /* Dropdown filter */
+    .dropdown { position: relative; display: flex; justify-content: center; margin-bottom: 20px; }
+    .dropbtn { background-color: #e0e0e0; color: #000; padding: 10px 20px; font-size: 16px; border: none; cursor: pointer; border-radius: 5px; }
+    .dropdown-content { display: none; position: absolute; background-color: #f9f9f9; min-width: 180px; box-shadow: 0px 8px 16px rgba(0,0,0,0.2); z-index: 1; border-radius: 5px; overflow: hidden; }
+    .dropdown-content div { padding: 10px 15px; cursor: pointer; border-bottom: 1px solid #ddd; }
+    .dropdown-content div:last-child { border-bottom: none; }
+    .dropdown-content div:hover { background-color: #e0e0e0; }
+    .show { display: block; }
+
+    /* Game Grid */
+    .game-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto 50px auto; padding: 0 20px; }
+    .game-card { background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; text-align: center; cursor: pointer; transition: transform 0.2s; }
+    .game-card:hover { transform: translateY(-5px); }
+    .game-card img { width: 100%; height: 150px; object-fit: cover; }
+    .game-card .game-name { padding: 10px; font-weight: bold; }
+    .game-card .game-price { padding-bottom: 10px; color: #555; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="search-login">
+      <a routerLink="/login">
+        <button>Log-out</button>
+      </a>
+      <!-- ✅ วงกลมเล็ก ๆ -->
+      <div class="profile-circle">A</div>
+      <input type="text" placeholder="Search game">
+    </div>
+  </header>
+
+  <h1>Games</h1>
+
+  <!-- Dropdown Filter -->
+  <div class="dropdown">
+    <button onclick="toggleDropdown()" class="dropbtn">Game All &#9776;</button>
+    <div id="myDropdown" class="dropdown-content">
+      <div onclick="filterGames('All')">Game All</div>
+      <div onclick="filterGames('Adventure')">Game Adventure</div>
+      <div onclick="filterGames('Card')">Game Card</div>
+      <div onclick="filterGames('RPG')">Game RPG</div>
+      <div onclick="filterGames('Puzzle')">Game Puzzle</div>
+      <div onclick="filterGames('Sport')">Game Sport</div>
+    </div>
+  </div>
+
+  <!-- Game Grid -->
+  <div class="game-grid" id="gameGrid">
+    <div class="game-card" data-category="Shooter">
+      <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Valorant_cover_art.jpg" alt="Valorant">
+      <div class="game-name">VALORANT</div>
+      <div class="game-price">199 Bath</div>
+    </div>
+    <div class="game-card" data-category="Shooter">
+      <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/PUBG_cover_art.jpg" alt="PUBG">
+      <div class="game-name">PUBG</div>
+      <div class="game-price">232 Bath</div>
+    </div>
+    <div class="game-card" data-category="RPG">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
+      <div class="game-name">MINECRAFT</div>
+      <div class="game-price">499 Bath</div>
+    </div>
+    <div class="game-card" data-category="Adventure">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Black_Myth_Wukong_cover.jpg" alt="Wukong">
+      <div class="game-name">BLACK MYTH: WUKONG</div>
+      <div class="game-price">899 Bath</div>
+    </div>
+    <div class="game-card" data-category="Adventure">
+      <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V_cover.jpg" alt="GTA V">
+      <div class="game-name">GTA V</div>
+      <div class="game-price">169 Bath</div>
+    </div>
+    <div class="game-card" data-category="Simulation">
+      <img src="https://upload.wikimedia.org/wikipedia/en/5/5f/The_Sims_4_cover.jpg" alt="The Sims">
+      <div class="game-name">THE SIMS</div>
+      <div class="game-price">789 Bath</div>
+    </div>
+    <div class="game-card" data-category="RPG">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
+      <div class="game-name">ROBLOX</div>
+      <div class="game-price">99 Bath</div>
+    </div>
+    <div class="game-card" data-category="Shooter">
+      <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Call_of_Duty_Modern_Warfare_2_cover.jpg" alt="COD">
+      <div class="game-name">CALL OF DUTY</div>
+      <div class="game-price">123 Bath</div>
+    </div>
+  </div>
+
+  <script>
+    // Toggle dropdown
+    function toggleDropdown() {
+      document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    // Close dropdown if clicked outside
+    window.onclick = function(e) {
+      if (!e.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
+    }
+
+    // Filter games
+    function filterGames(category) {
+      const cards = document.querySelectorAll('.game-card');
+      cards.forEach(card => {
+        if(category === 'All' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      // Update button text
+      document.querySelector('.dropbtn').textContent = 'Game ' + category + ' \u2630';
+    }
+  </script>
+</body>
+</html>
