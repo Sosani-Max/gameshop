@@ -131,16 +131,21 @@
   <main>
     <h1>Login with your account</h1>
     <div class="login-box">
-      <h2>Welcome Back!!</h2>
-      <input type="email" placeholder="Enter your email">
-      <input type="password" placeholder="Enter your password">
-      <button class="login-btn">Login</button>
-      <div class="no-account">You don't have account ?</div>
+  <h2>Welcome Back!</h2>
 
-      <a href="register">
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <input type="email" placeholder="Enter your email" formControlName="email">
+    <input type="password" placeholder="Enter your password" formControlName="password">
+    
+    <button class="login-btn" type="submit">Login</button>
+  </form>
+
+  <div class="no-account">Don't have an account?</div>
+  <a href="register">
         <button class="register-btn">Register</button>
       </a>
-    </div>
+</div>
+
   </main>
 </body>
 </html>
