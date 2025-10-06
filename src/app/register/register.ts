@@ -13,6 +13,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 })
 export class Register {
   registerForm: FormGroup;
+  selectedFile: File | null = null;
+  previewUrl: string | ArrayBuffer | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -20,22 +22,46 @@ export class Register {
     private router: Router
   ) {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],       // เปลี่ยนจาก username → name
+      name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      this.selectedFile = file;
+
+      // แสดง preview รูป
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.previewUrl = reader.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   onSubmit() {
     if (this.registerForm.valid) {
-      this.http.post('http://localhost:3000/register', this.registerForm.value)
+      const formData = new FormData();
+      formData.append('name', this.registerForm.get('name')?.value);
+      formData.append('email', this.registerForm.get('email')?.value);
+      formData.append('password', this.registerForm.get('password')?.value);
+
+      // ✅ ใช้ชื่อ key 'avatar' ให้ตรงกับ backend
+      if (this.selectedFile) {
+        formData.append('avatar', this.selectedFile);
+      }
+
+      this.http.post('http://localhost:3000/register', formData)
         .subscribe({
           next: (res) => {
             alert('Register successful!');
-            this.router.navigate(['/login']); // ไปหน้า login
+            this.router.navigate(['/login']);
           },
           error: (err) => {
-            alert('Error: ' + err.error?.error || err.message);
+            alert('Error: ' + (err.error?.error || err.message));
           }
         });
     } else {

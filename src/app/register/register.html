@@ -143,7 +143,13 @@
     <input type="email" placeholder="Enter your email" formControlName="email">
     <input type="password" placeholder="Enter your password" formControlName="password">
 
-    <div class="profile-pic">Choose photo</div>
+    <div class="profile-pic" (click)="fileInput.click()">
+  <img *ngIf="previewUrl" [src]="previewUrl" alt="Profile" width="100" height="100" style="border-radius: 50%;">
+  <span *ngIf="!previewUrl">Choose photo</span>
+  <input type="file" #fileInput accept="image/*" style="display: none" (change)="onFileSelected($event)">
+</div>
+
+
 
     <button class="register-btn" (click)="onSubmit()">Register</button>
   </div>
