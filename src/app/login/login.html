@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GameShop Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -14,45 +14,23 @@
     }
 
     body {
-      background-color: #fff;
+      background: linear-gradient(135deg, #0B0D3C 40%, #2E3192 100%);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
     header {
-      background-color: #0B0D3C;
+      background-color: rgba(11, 13, 60, 0.9);
       color: #fff;
       padding: 1rem 2rem;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
-    }
-
-    header .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: bold;
-    }
-
-    header .search-login {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    header input[type="text"] {
-      padding: 0.4rem 0.6rem;
-      border-radius: 4px;
-      border: none;
-    }
-
-    header button {
-      background: none;
-      border: 1px solid #fff;
-      color: #fff;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
     }
 
     main {
@@ -61,51 +39,74 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      padding: 40px 20px;
     }
 
     main h1 {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-      margin-top: 2rem;
-      color: #0B0D3C;
+      font-size: 2.2rem;
+      color: #fff;
+      margin-bottom: 2rem;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     }
 
     .login-box {
-      background-color: #0B0D3C;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 300px;
-      color: #fff;
+      background-color: #fff;
+      padding: 2.5rem;
+      border-radius: 16px;
+      width: 340px;
+      color: #0B0D3C;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      text-align: center;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .login-box:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.3);
     }
 
     .login-box h2 {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      color: #0B0D3C;
     }
 
     .login-box input {
       width: 100%;
-      padding: 0.5rem;
-      border-radius: 4px;
+      padding: 0.75rem;
+      border-radius: 8px;
       border: 1px solid #ccc;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .login-box input:focus {
+      border-color: #2E3192;
+      outline: none;
+      box-shadow: 0 0 6px rgba(46, 49, 146, 0.3);
     }
 
     .login-box button {
-      padding: 0.6rem;
+      width: 100%;
+      padding: 0.75rem;
       border: none;
-      border-radius: 4px;
+      border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
     .login-box .login-btn {
-      background-color: #C3C4E0;
-      color: #0B0D3C;
-      margin-bottom: 0.5rem;
+      background-color: #2E3192;
+      color: #fff;
+      margin-bottom: 1rem;
+    }
+
+    .login-box .login-btn:hover {
+      background-color: #1D1F6D;
+      transform: scale(1.02);
     }
 
     .login-box .register-btn {
@@ -113,35 +114,46 @@
       color: #0B0D3C;
     }
 
+    .login-box .register-btn:hover {
+      background-color: #FFD84C;
+      transform: scale(1.02);
+    }
+
     .login-box .no-account {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      color: #555;
       margin-bottom: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      color: #ccc;
+      font-size: 0.85rem;
+      padding: 1rem;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="logo">GameShop</div>
-  </header>
+  <header>GameShop</header>
 
   <main>
     <h1>Login with your account</h1>
     <div class="login-box">
-  <h2>Welcome Back!</h2>
+      <h2>Welcome Back!</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-    <input type="email" placeholder="Enter your email" formControlName="email">
-    <input type="password" placeholder="Enter your password" formControlName="password">
-    
-    <button class="login-btn" type="submit">Login</button>
-  </form>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <input type="email" placeholder="Enter your email" formControlName="email">
+        <input type="password" placeholder="Enter your password" formControlName="password">
+        <button class="login-btn" type="submit">Login</button>
+      </form>
 
-  <div class="no-account">Don't have an account?</div>
-  <a href="register">
-        <button class="register-btn">Register</button>
+      <div class="no-account">Don't have an account?</div>
+      <a href="register">
+        <button class="register-btn" type="button">Register</button>
       </a>
-</div>
-
+    </div>
   </main>
+
+  <footer>© 2025 GameShop. All rights reserved.</footer>
 </body>
 </html>

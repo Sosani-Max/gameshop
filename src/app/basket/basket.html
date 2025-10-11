@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop - Cart</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #0b1335;
+    }
+
+    header {
+      background-color: #0b1335;
+      color: white;
+      padding: 10px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+           .profile-circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b1335;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .header-right input {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: none;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+
+
+
+    .logout-btn {
+      background: white;
+      color: #0b1335;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    /* Layout */
+    .container {
+      display: flex;
+      margin: 20px 50px;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #0b1335; /* Sidebar สีน้ำเงิน */
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .sidebar img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 15px;
+      object-fit: cover;
+    }
+
+    .sidebar p {
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+    .menu {
+      margin-top: 30px;
+    }
+
+    .menu div, .menu a {
+      display: block;
+      padding: 15px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border-bottom: 1px solid #1b2558;
+      border-radius: 5px;
+      text-decoration: none;
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .menu div:hover, .menu div.active, .menu a:hover {
+      background-color: #1b2558;
+    }
+
+    /* Content */
+    .content {
+      flex: 1;
+      margin-left: 30px;
+    }
+
+    .back-btn {
+      background-color: #0b1335;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: block;
+      text-align: left; /* ชิดซ้าย */
+    }
+
+    .back-btn:hover {
+      background-color: #1b2558;
+    }
+
+    .content-header {
+      background-color: #eaeaea;
+      padding: 15px;
+      font-weight: bold;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .cart-items {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 0 0 5px 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+    }
+
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+
+    .cart-item-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .cart-item img {
+      width: 120px;
+      border-radius: 5px;
+    }
+
+    .cart-info {
+      text-align: left;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .cart-info p {
+      margin-bottom: 3px;
+    }
+
+    .remove-btn {
+      background-color: red;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .remove-btn:hover {
+      background-color: darkred;
+    }
+
+    .total {
+      text-align: right;
+      font-weight: bold;
+      font-size: 16px;
+      margin-top: 15px;
+    }
+
+    .pay-btn {
+      background-color: #00b050;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-left: 15px;
+    }
+
+    .pay-btn:hover {
+      background-color: #008f3e;
+    }
+
+    .checkbox {
+      width: 18px;
+      height: 18px;
+      accent-color: #0b1335;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="search-login">
+      <a href="profile">
+        <div class="profile-circle">A</div>
+      </a>
+      <a href="login">
+        <button>Log-out</button>
+      </a>
+    </div>
+  </header>
+
+  <style>
+.search-login {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* ระยะห่างระหว่างวงกลมกับปุ่ม */
+}
+
+/* วงกลมสีขาว */
+.profile-circle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #0b1335;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  border: 2px solid #fff; /* ถ้าต้องการเส้นขอบขาวรอบวงกลม */
+}
+
+/* ปุ่ม Log-out */
+.logout-btn {
+  background: #fff;
+  color: #0b1335;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #e0e0e0;
+}
+</style>
+
+  <div class="container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <img src="https://i.pinimg.com/736x/fb/2c/55/fb2c55c16dfd31f017f1b0ddf9c79fdb.jpg" alt="User">
+      <p><strong>Username :</strong> Nagumo</p>
+      <p><strong>Email :</strong> ng@gmail.com</p>
+
+     <div class="menu">
+      <div class="active">เกมในตะกร้า</div>
+      <a href="mygame">Mygame</a>
+      <a href="wallet">Wallet</a>
+      <a href="history">History</a>
+    </div>
+  </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <button class="back-btn" onclick="window.location.href='gamesell'">ย้อนกลับ</button>
+
+      <div class="content-header">เกมในตะกร้าของคุณ</div>
+      <div class="cart-items">
+        
+        <div class="cart-item">
+          <div class="cart-item-left">
+            <input type="checkbox" class="checkbox" checked>
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
+            <div class="cart-info">
+              <p><b>Name :</b> Dead by Daylight</p>
+              <p><b>ประเภท :</b> Game Adventure</p>
+              <p><b>ราคา :</b> 289 Bath</p>
+              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
+              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
+            </div>
+          </div>
+          <button class="remove-btn">ลบเกม</button>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-item-left">
+            <input type="checkbox" class="checkbox" checked>
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
+            <div class="cart-info">
+              <p><b>Name :</b> Dead by Daylight</p>
+              <p><b>ประเภท :</b> Game Adventure</p>
+              <p><b>ราคา :</b> 289 Bath</p>
+              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
+              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
+            </div>
+          </div>
+          <button class="remove-btn">ลบเกม</button>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-item-left">
+            <input type="checkbox" class="checkbox" checked>
+            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
+            <div class="cart-info">
+              <p><b>Name :</b> Dead by Daylight</p>
+              <p><b>ประเภท :</b> Game Adventure</p>
+              <p><b>ราคา :</b> 289 Bath</p>
+              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
+              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
+            </div>
+          </div>
+          <button class="remove-btn">ลบเกม</button>
+        </div>
+
+        <div class="total">
+          ยอดเงินรวม : 600 Bath
+          <button class="pay-btn" onclick="window.location.href='mpm-basket'">ชำระเงิน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

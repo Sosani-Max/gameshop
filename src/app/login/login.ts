@@ -27,7 +27,7 @@ export class Login {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.http.post('http://localhost:3000/login', this.loginForm.value)
+      this.http.post('https://apigameshop-2yg2.vercel.app/login', this.loginForm.value)
         .subscribe({
           next: (res: any) => {
             // ตรวจสอบ role ที่ backend ส่งมา

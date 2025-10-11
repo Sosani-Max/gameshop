@@ -49,7 +49,6 @@ export class Register {
       formData.append('email', this.registerForm.get('email')?.value);
       formData.append('password', this.registerForm.get('password')?.value);
 
-      // ✅ ใช้ชื่อ key 'avatar' ให้ตรงกับ backend
       if (this.selectedFile) {
         formData.append('avatar', this.selectedFile);
       }

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop - Make Payment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #0b1335;
+    }
+
+    header {
+      background-color: #0b1335;
+      color: white;
+      padding: 10px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .search-login {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    header button {
+      background-color: white;
+      color: #0b1335;
+      border: none;
+      padding: 5px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .profile-circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b1335;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .profile-circle:hover {
+      background-color: #ddd;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 40px 0 20px 0;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .back-btn {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 20px auto;
+      background-color: #0b1335;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+    }
+
+    .back-btn:hover {
+      background-color: #1d2970;
+    }
+
+    .game-container {
+      background-color: white;
+      max-width: 800px;
+      margin: 0 auto 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .game-info {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .game-info h2 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .game-info p {
+      margin-bottom: 5px;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+      transition: background-color 0.2s;
+    }
+
+    .buy {
+      background-color: green;
+    }
+
+    .buy:hover {
+      background-color: darkgreen;
+    }
+
+    /* ข้อความแจ้งเตือนชำระเงิน */
+    #payment-notice {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 25px 40px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="search-login">
+      <a href="profile">
+        <div class="profile-circle">A</div>
+      </a>
+      <a href="login">
+        <button>Log-out</button>
+      </a>
+    </div>
+  </header>
+
+  <h1>Make Payment</h1>
+
+  <button class="back-btn" onclick="window.location.href='gamesell'">← Back</button>
+
+  <div class="game-container">
+    <div class="game-info">
+      <h2>Name : Dead by Daylight</h2>
+      <p>ราคา : 259 Bath</p>
+      <p style="color: red;">ยอดคงเหลือ : 1500 Bath</p>
+
+      <div class="buttons">
+        <button class="btn buy" onclick="alert('ชำระเงินสำเร็จ!')">BUY</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function confirmPayment() {
+      const notice = document.getElementById('payment-notice');
+      notice.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = 'homelogin';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
