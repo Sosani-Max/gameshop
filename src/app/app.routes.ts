@@ -12,6 +12,13 @@ import { MpmBasket } from './mpm-basket/mpm-basket';
 import { Mygame } from './mygame/mygame';
 import { Wallet } from './wallet/wallet';
 import { History } from './history/history';
+import { User } from './user/user';
+import { Promotion } from './promotion/promotion';
+import { Addgame } from './addgame/addgame';
+import { Namegame } from './namegame/namegame';
+import { Editgame } from './editgame/editgame';
+import { AdminProfile } from './admin-profile/admin-profile';
+import { Customer } from './customer/customer';
 
 
 export const routes: Routes = [
@@ -27,5 +34,12 @@ export const routes: Routes = [
   { path: 'mpm-basket', component: MpmBasket },
   { path: 'mygame', component: Mygame },
   { path: 'wallet', component: Wallet },
-  { path: 'history', component: History }
+  { path: 'history', component: History },
+  { path: 'user', component:  User},
+  { path: 'promotion', component:  Promotion},
+  { path: 'addgame', component:  Addgame},
+  { path: 'namegame', component:  Namegame},
+  { path: 'editgame', component:  Editgame},
+  { path: 'admin-profile', component:  AdminProfile},
+  { path: 'customer', component:  Customer}
 ];

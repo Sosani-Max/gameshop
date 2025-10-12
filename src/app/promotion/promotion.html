@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop - Promotion</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f5f5f5; color: #0b1335; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Header */
+    header {
+      background: #0b1335;
+      color: white;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo { font-size: 1.8rem; font-weight: 700; }
+    header .nav { display: flex; align-items: center; gap: 25px; }
+    header .nav a { color: white; text-decoration: none; font-weight: 500; }
+    header .nav a:hover { text-decoration: underline; }
+    .profile-circle {
+      width: 35px; height: 35px;
+      border-radius: 50%;
+      background: white;
+      color: #0b1335;
+      display: flex; justify-content: center; align-items: center;
+      font-weight: bold; cursor: pointer;
+    }
+
+    h1 { margin: 30px 0 20px 70px; font-size: 2.2rem; }
+
+    /* Promotion Table */
+    .promo-table {
+      width: calc(100% - 140px);
+      margin: 0 70px 30px 70px;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .promo-table th, .promo-table td {
+      padding: 12px 15px;
+      text-align: center;
+    }
+    .promo-table th { background: #0b1335; color: white; font-weight: 700; }
+    .promo-table tr:nth-child(even) { background: #e0e0e0; }
+    .promo-table tr:hover { background: #d4d4d4; }
+
+    /* Action Buttons */
+    .promo-table td button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px; /* เว้นระยะห่างระหว่าง Edit และ Delete */
+      justify-content: center;
+    }
+    .edit-btn { color: #007bff; }
+    .delete-btn { color: #ff0000; }
+
+    /* Add/Edit Form */
+    .promo-form {
+      width: calc(100% - 140px);
+      margin: 30px 70px 30px 70px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: #21184b;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: auto; /* ให้กรอบอยู่ด้านล่าง */
+    }
+    .promo-form input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+    .promo-form button {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      color: white;
+    }
+    .save-btn { background: #0b80ff; }
+    .cancel-btn { background: #ccc; color: #333; }
+
+    /* Section Title */
+    .promo-form .section-title { 
+      font-weight: 700; 
+      width: 100%; 
+      margin-bottom: 10px; 
+      color: white;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="nav">
+      <a href="admin-profile">
+        <div class="profile-circle">A</div>
+      </a>
+    <a routerLink="/admin" class="logout-link">Home</a>
+      <a routerLink="/promotion" class="logout-link" style="color:red;">Promotion</a>
+      <a routerLink="/user" class="logout-link">User</a>
+      <a routerLink="/login" class="logout-link">Log-out</a>
+    </div>
+  </header>
+
+  <h1>PROMOTION</h1>
+
+  <!-- Promotion Table -->
+  <table class="promo-table" id="promoTable">
+    <thead>
+      <tr>
+        <th>โค้ดส่วนลด</th>
+        <th>ลดราคา</th>
+        <th>จำนวนที่ใช้ได้</th>
+        <th>จำนวนใบ / บัญชี</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GAME50</td>
+        <td>-10%</td>
+        <td>19 ครั้ง</td>
+        <td>1 ใบ / 1 บัญชี</td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editPromo(this)">Edit</button>
+            <button class="delete-btn" onclick="deletePromo(this)">Delete</button>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>FREEGAME</td>
+        <td>-20%</td>
+        <td>10 ครั้ง</td>
+        <td>1 ใบ / 1 บัญชี</td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editPromo(this)">Edit</button>
+            <button class="delete-btn" onclick="deletePromo(this)">Delete</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <!-- Add Promo Form -->
+  <div class="promo-form">
+    <span class="section-title">เพิ่ม โค้ดส่วนลด</span>
+    <input type="text" placeholder="ใส่ข้อมูล">
+    <input type="text" placeholder="ใส่ข้อมูลเพิ่มเติม">
+    <button class="save-btn">บันทึก</button>
+    <button class="cancel-btn">ยกเลิก</button>
+
+    <span class="section-title">แก้ไข โค้ดส่วนลด</span>
+    <input type="text" placeholder=" ">
+    <input type="text" placeholder=" ">
+    <button class="save-btn">บันทึก</button>
+    <button class="cancel-btn">ยกเลิก</button>
+  </div>
+
+  <script>
+    let editRow = null;
+
+    function addPromo() {
+      const code = document.getElementById('newCode').value;
+      const discount = document.getElementById('newDiscount').value;
+      const times = document.getElementById('newTimes').value;
+
+      if (!code || !discount || !times) return alert("กรอกข้อมูลให้ครบ");
+
+      const table = document.getElementById('promoTable').getElementsByTagName('tbody')[0];
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${code}</td>
+        <td>${discount}</td>
+        <td>${times} ครั้ง</td>
+        <td>1 ใบ / 1 บัญชี</td>
+        <td>
+          <div class="action-buttons">
+            <button class="edit-btn" onclick="editPromo(this)">Edit</button>
+            <button class="delete-btn" onclick="deletePromo(this)">Delete</button>
+          </div>
+        </td>
+      `;
+      clearForm();
+    }
+
+    function clearForm() {
+      document.getElementById('newCode').value = '';
+      document.getElementById('newDiscount').value = '';
+      document.getElementById('newTimes').value = '';
+    }
+
+    function editPromo(btn) {
+      editRow = btn.closest('tr');
+      document.getElementById('editForm').style.display = 'flex';
+      document.getElementById('editCode').value = editRow.cells[0].innerText;
+      document.getElementById('editDiscount').value = editRow.cells[1].innerText;
+      document.getElementById('editTimes').value = editRow.cells[2].innerText.replace(' ครั้ง','');
+      window.scrollTo({ top: editRow.offsetTop - 50, behavior: 'smooth' });
+    }
+
+    function saveEdit() {
+      editRow.cells[0].innerText = document.getElementById('editCode').value;
+      editRow.cells[1].innerText = document.getElementById('editDiscount').value;
+      editRow.cells[2].innerText = document.getElementById('editTimes').value + ' ครั้ง';
+      cancelEdit();
+    }
+
+    function cancelEdit() {
+      document.getElementById('editForm').style.display = 'none';
+      editRow = null;
+    }
+
+    function deletePromo(btn) {
+      if (confirm("ต้องการลบโค้ดส่วนลดนี้หรือไม่?")) {
+        btn.closest('tr').remove();
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop - User</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background: #f5f5f5; color: #0b1335; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* Header */
+    header {
+      background: #0b1335;
+      color: white;
+      padding: 10px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header .logo { font-size: 1.8rem; font-weight: 700; }
+    header .nav { display: flex; align-items: center; gap: 25px; }
+    header .nav a { color: white; text-decoration: none; font-weight: 500; }
+    header .nav a:hover { text-decoration: underline; }
+    .profile-circle {
+      width: 35px; height: 35px;
+      border-radius: 50%;
+      background: white;
+      color: #0b1335;
+      display: flex; justify-content: center; align-items: center;
+      font-weight: bold; cursor: pointer;
+    }
+
+    h1 { margin: 30px 0 20px 70px; font-size: 2.2rem; }
+
+    /* Table */
+    .promo-table {
+      width: calc(100% - 140px);
+      margin: 0 70px 30px 70px;
+      border-collapse: collapse;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    .promo-table th, .promo-table td {
+      padding: 12px 15px;
+      text-align: center;
+    }
+    .promo-table th { background: #0b1335; color: white; font-weight: 700; }
+    .promo-table tr:nth-child(even) { background: #e0e0e0; }
+    .promo-table tr:hover { background: #d4d4d4; }
+
+    /* Make entire row clickable */
+    .promo-table tbody tr {
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .promo-table tbody tr:hover {
+      background: #c0c0c0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="nav">
+      <a href="admin-profile">
+        <div class="profile-circle">A</div>
+      </a>
+      <a href="admin">Home</a>
+      <a href="promotion">Promotion</a>
+      <a href="user" style="color:red;">User</a>
+      <a href="login">Log-out</a>
+    </div>
+  </header>
+
+  <h1>User</h1>
+
+  <!-- User Table -->
+  <table class="promo-table" id="promoTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Wallet Balance</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr onclick="window.location.href='customer'">
+        <td>ชมพู่</td>
+        <td>000@gmail.com</td>
+        <td>398 Bath</td>
+      </tr>
+      <tr onclick="window.location.href='customer'">
+        <td>ลำไย</td>
+        <td>111@gmail.com</td>
+        <td>100 Bath</td>
+      </tr>
+      <tr onclick="window.location.href='customer'">
+        <td>ส้ม</td>
+        <td>222@gmail.com</td>
+        <td>0 Bath</td>
+      </tr>
+      <tr onclick="window.location.href='customer'">
+        <td>แตงโม</td>
+        <td>333@gmail.com</td>
+        <td>50 Bath</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>

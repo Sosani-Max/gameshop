@@ -61,14 +61,12 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      transition: background-color 0.25s ease;
     }
 
     .profile-circle:hover {
       background-color: #ddd;
     }
 
-    /* Edit Profile */
     .edit-profile-container {
       max-width: 600px;
       margin: 40px auto;
@@ -96,7 +94,6 @@
       cursor: pointer;
       background-color: white;
       overflow: hidden;
-      transition: background-color 0.25s ease;
     }
 
     .profile-pic:hover {
@@ -113,9 +110,9 @@
     /* Info Box */
     .info-box {
       background-color: white;
-      border-radius: 12px;
-      padding: 25px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .info-box label {
@@ -126,16 +123,10 @@
 
     .info-box input {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 18px;
-      border-radius: 8px;
+      padding: 8px 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
       border: 1px solid #ccc;
-      transition: border-color 0.2s ease;
-    }
-
-    .info-box input:focus {
-      border-color: #0b1335;
-      outline: none;
     }
 
     /* ปุ่ม Save */
@@ -143,13 +134,12 @@
       background-color: #0b1335;
       color: white;
       border: none;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 10px 15px;
+      border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
       width: 100%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.25s ease, transform 0.25s ease;
+      transition: 0.25s ease;
     }
 
     .save-btn:hover {
@@ -164,24 +154,16 @@
       color: #0b1335;
       font-weight: bold;
       border: none;
-      padding: 12px;
-      border-radius: 8px;
+      padding: 10px 15px;
+      border-radius: 5px;
       cursor: pointer;
       width: 100%;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      transition: background-color 0.25s ease, transform 0.25s ease;
+      transition: 0.25s ease;
     }
 
     .back-btn:hover {
       background-color: #bfbfbf;
       transform: translateY(-2px);
-    }
-
-    .btn-group {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 10px;
     }
   </style>
 </head>
@@ -193,14 +175,14 @@
       <a routerLink="/login">
         <button>Log-out</button>
       </a>
-      <a routerLink="/profile">
+      <a href="admin-profile">
         <div class="profile-circle">A</div>
       </a>
     </div>
   </header>
 
   <div class="edit-profile-container">
-    <h1>Edit Profile</h1>
+    <h1>Edit</h1>
 
     <!-- Profile Picture -->
     <div class="profile-pic" onclick="document.getElementById('fileInput').click()">
@@ -211,19 +193,16 @@
 
     <!-- Info Box -->
     <div class="info-box">
-      <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter username">
+      <input type="text" id="username" placeholder=" ">
+      <input type="email" id="email" placeholder=" ">
+      <input type="password" id="password" placeholder=" ">
+    <input type="password" id="password" placeholder=" ">
 
-      <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter email">
+      <button class="save-btn">Save</button>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter new password">
-
-      <div class="btn-group">
-        <button class="save-btn">Save Changes</button>
-        <a href="/admin"><button type="button" class="back-btn">Back</button></a>
-      </div>
+      <a href="/namegame">
+        <button type="button" class="back-btn">Back</button>
+      </a>
     </div>
   </div>
 

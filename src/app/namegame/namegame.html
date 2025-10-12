@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GameShop - Dead by Daylight</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #fff;
+      color: #0b1335;
+    }
+
+    /* Header */
+    header {
+      background-color: #0b1335;
+      color: white;
+      padding: 12px 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-right a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+    }
+
+    .nav-right a:hover {
+      text-decoration: underline;
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-box input {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 6px;
+    }
+
+    .profile-circle {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #0b1335;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* Title */
+    .game-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin: 40px 0 0 60px;
+    }
+
+/* ปุ่มย้อนกลับ (ลูกศรในวงกลม) */
+.back-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  margin: 15px 0 20px 60px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #0b1335;
+  border: 2px solid #0b1335;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s ease;
+  background-color: #fff;
+}
+
+.back-icon:hover {
+  background-color: #0b1335;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+
+    /* Game Card */
+    .game-card {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .game-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 20px;
+      font-weight: bold;
+    }
+
+    .left-info {
+      color: #0b1335;
+      font-size: 14px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 20px;
+      padding: 8px 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .delete-btn {
+      background-color: #e02929;
+    }
+
+    .delete-btn:hover {
+      background-color: #b61f1f;
+    }
+
+    .edit-btn {
+      background-color: #0b1335;
+    }
+
+    .edit-btn:hover {
+      background-color: #1d2970;
+    }
+
+    .price {
+      color: #0b1335;
+      font-weight: 700;
+    }
+
+    /* Detail */
+    .detail-section {
+      max-width: 700px;
+      margin: 30px auto;
+    }
+
+    .detail-title {
+      color: #0073e6;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .detail-text {
+      line-height: 1.8;
+      font-size: 0.95rem;
+      text-align: justify;
+      padding: 0 10px;
+    }
+
+    .detail-text b {
+      font-weight: 700;
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">GameShop</div>
+    <div class="nav-right">
+              <a href="admin-profile">
+        <div class="profile-circle">A</div>
+      </a>
+      <a href="ี">Log-out</a>
+    </div>
+  </header>
+
+  <!-- Title -->
+  <h1 class="game-title">Dead by</h1>
+  <a href="admin" class="back-icon">←</a>
+
+  <!-- Game Card -->
+  <div class="game-card">
+    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Dead_by_Daylight_cover_art.jpg" alt="Dead by Daylight">
+
+    <div class="card-footer">
+      <div class="left-info">ยอดขาย 1000</div>
+      <div class="btn-group">
+        <button class="btn delete-btn">Delete</button>
+        <a href="editgame" class="btn edit-btn">Edit</a>
+      </div>
+      <div class="price">259 Bath</div>
+    </div>
+  </div>
+
+  <!-- Detail -->
+  <div class="detail-section">
+    <div class="detail-title">รายละเอียด</div>
+    <p class="detail-text">
+      <b>Dead by Daylight</b> เป็นเกมสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1)
+      ซึ่งผู้เล่นหนึ่งคนจะรับบทบาทเป็นฆาตกรที่ไล่ล่าเหยื่อ
+      และอีกสี่คนจะเล่นเป็นผู้รอดชีวิตที่พยายามหลบหนีจากการตามล่า
+      และหลบเลี่ยงไม่ให้ถูกจับ ถูกทรมาน และถูกฆ่า
+    </p>
+  </div>
+</body>
+</html>
