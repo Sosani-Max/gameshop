@@ -134,6 +134,7 @@
       background-color: #0b1335;
       color: white;
       border: none;
+      margin-top: 15px;
       padding: 10px 15px;
       border-radius: 5px;
       cursor: pointer;
@@ -181,30 +182,39 @@
     </div>
   </header>
 
-  <div class="edit-profile-container">
-    <h1>Add A Game</h1>
+<!-- addgame.html -->
+<div class="edit-profile-container">
+  <h1>Add A Game</h1>
 
-    <!-- Profile Picture -->
-    <div class="profile-pic" onclick="document.getElementById('fileInput').click()">
-      <img id="preview" src="" alt="" style="display: none;">
-      <span id="chooseText">Choose photo</span>
-      <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="previewImage(event)">
-    </div>
-
-    <!-- Info Box -->
-    <div class="info-box">
-      <input type="text" id="username" placeholder="ชื่อเกม">
-      <input type="email" id="email" placeholder="ราคา">
-      <input type="password" id="password" placeholder="รายละเอียด">
-    <input type="password" id="password" placeholder="ประเภท">
-
-      <button class="save-btn">Save</button>
-
-      <a href="/admin">
-        <button type="button" class="back-btn">Back</button>
-      </a>
-    </div>
+  <div class="profile-pic" (click)="fileInput.click()">
+    <img *ngIf="imagePreview; else chooseText" [src]="imagePreview" alt="Game Image">
+    <ng-template #chooseText>
+      <span>Choose photo</span>
+    </ng-template>
+    <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" style="display:none">
   </div>
+
+  <div class="info-box">
+    <input type="text" [(ngModel)]="game_name" placeholder="ชื่อเกม">
+    <input type="number" [(ngModel)]="price" placeholder="ราคา">
+    <input type="text" [(ngModel)]="description" placeholder="รายละเอียด">
+
+    <label for="category">ประเภท</label>
+    <select id="category" [(ngModel)]="category_id">
+      <option [value]="1">Adventure</option>
+      <option [value]="2">RPG</option>
+      <option [value]="3">Puzzle</option>
+      <option [value]="4">Card</option>
+      <option [value]="5">Sport</option>
+    </select>
+
+    <button class="save-btn" (click)="saveGame()">Save</button>
+    <a routerLink="/admin"><button type="button" class="back-btn">Back</button></a>
+  </div>
+</div>
+
+
+
 
   <script>
     function previewImage(event) {

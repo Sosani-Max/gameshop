@@ -53,7 +53,7 @@ export class Register {
         formData.append('avatar', this.selectedFile);
       }
 
-      this.http.post('http://localhost:3000/register', formData)
+      this.http.post('https://apigameshop-2yg2.vercel.app/register', formData)
         .subscribe({
           next: (res) => {
             alert('Register successful!');
