@@ -6,373 +6,155 @@
   <title>GameShop - Cart</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: #f5f5f5; color: #0b1335; }
 
-    body {
-      background-color: #f5f5f5;
-      color: #0b1335;
-    }
-
+    /* Header */
     header {
       background-color: #0b1335;
       color: white;
-      padding: 10px 50px;
+      padding: 10px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    .search-login { display: flex; align-items: center; gap: 10px; }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+    .money-btn { text-decoration: none; padding: 5px 10px; font-weight: bold; transition: 0.2s; display: inline-block; background: none; }
+    .money-btn.home { color: white; }
+    .money-btn.basket { color: red; }
+    .money-btn.other { color: white; }
+
+    .profile-circle {
+      width: 35px; height: 35px; border-radius: 50%;
+      background-color: white; display: flex;
+      justify-content: center; align-items: center;
+      color: #0b1335; font-size: 14px; font-weight: bold; cursor: pointer;
     }
-
-           .profile-circle {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #0b1335;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .header-right input {
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: none;
-    }
-
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .profile img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-
-
-
-    .logout-btn {
-      background: white;
-      color: #0b1335;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .profile-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
     /* Layout */
-    .container {
-      display: flex;
-      margin: 20px 50px;
-    }
+    .container { display: flex; margin: 20px 50px; }
+    .content { flex: 1; margin-left: 0px; }
 
-    .sidebar {
-      width: 250px;
-      background-color: #0b1335; /* Sidebar สีน้ำเงิน */
+    .content-header { background-color: #eaeaea; padding: 15px; font-weight: bold; border-radius: 5px 5px 0 0; }
+    .cart-items { background-color: #fff; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+    .cart-item { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 15px 0; }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-left { display: flex; align-items: center; gap: 15px; }
+    .cart-item img { width: 120px; border-radius: 5px; }
+    .cart-info { text-align: left; font-size: 14px; color: #333; }
+    .cart-info p { margin-bottom: 3px; }
+
+    .remove-btn { background-color: red; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; }
+    .remove-btn:hover { background-color: darkred; }
+
+    .total { text-align: right; font-weight: bold; font-size: 16px; margin-top: 15px; }
+    .pay-btn { background-color: #00b050; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-left: 15px; }
+    .pay-btn:hover { background-color: #008f3e; }
+    .checkbox { width: 18px; height: 18px; accent-color: #0b1335; }
+
+    /* Modal */
+    .modal {
+      display: none; /* เริ่มซ่อน */
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal.show { display: flex; } /* class .show ใช้เปิด modal */
+    .modal-content {
+      background-color: white;
+      padding: 20px 25px;
       border-radius: 8px;
-      padding: 20px;
+      max-width: 300px;
+      width: 90%;
       text-align: center;
-      color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
+    .modal-content h3 { margin-bottom: 15px; }
+    .modal-content p { margin-bottom: 10px; }
+    .modal-content input { width: 100%; padding: 6px 8px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ccc; }
+    .close-btn {
+      background-color: #0b1335; color: white;
+      border: none; padding: 8px 15px; border-radius: 5px;
+      cursor: pointer; font-weight: bold;
+    }
+    .close-btn:hover { background-color: #1b2558; }
 
-    .sidebar img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
-
-    .sidebar p {
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-
-    .menu {
-      margin-top: 30px;
-    }
-
-    .menu div, .menu a {
-      display: block;
-      padding: 15px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      border-bottom: 1px solid #1b2558;
-      border-radius: 5px;
-      text-decoration: none;
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    .menu div:hover, .menu div.active, .menu a:hover {
-      background-color: #1b2558;
-    }
-
-    /* Content */
-    .content {
-      flex: 1;
-      margin-left: 30px;
-    }
-
-    .back-btn {
-      background-color: #0b1335;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-bottom: 15px;
-      display: block;
-      text-align: left; /* ชิดซ้าย */
-    }
-
-    .back-btn:hover {
-      background-color: #1b2558;
-    }
-
-    .content-header {
-      background-color: #eaeaea;
-      padding: 15px;
-      font-weight: bold;
-      border-radius: 5px 5px 0 0;
-    }
-
-    .cart-items {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 0 0 5px 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 0;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .cart-item-left {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .cart-item img {
-      width: 120px;
-      border-radius: 5px;
-    }
-
-    .cart-info {
-      text-align: left;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .cart-info p {
-      margin-bottom: 3px;
-    }
-
-    .remove-btn {
-      background-color: red;
-      color: white;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .remove-btn:hover {
-      background-color: darkred;
-    }
-
-    .total {
-      text-align: right;
-      font-weight: bold;
-      font-size: 16px;
-      margin-top: 15px;
-    }
-
-    .pay-btn {
-      background-color: #00b050;
-      color: white;
-      border: none;
-      padding: 10px 25px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-left: 15px;
-    }
-
-    .pay-btn:hover {
-      background-color: #008f3e;
-    }
-
-    .checkbox {
-      width: 18px;
-      height: 18px;
-      accent-color: #0b1335;
-    }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="logo">GameShop</div>
-    <div class="search-login">
-      <a href="profile">
-        <div class="profile-circle">A</div>
+<header>
+  <div class="logo">GameShop</div>
+  <div class="search-login">
+    <a href="homelogin" class="money-btn home">Home</a>
+    <a href="basket" class="money-btn basket">Basket</a>
+    <a href="mygame" class="money-btn other">My Game</a>
+    <a href="history" class="money-btn other">History</a>
+    <a href="wallet" class="money-btn other" *ngIf="wallet !== null">
+        {{ wallet }} บาท
       </a>
-      <a href="login">
-        <button>Log-out</button>
-      </a>
-    </div>
-  </header>
-
-  <style>
-.search-login {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* ระยะห่างระหว่างวงกลมกับปุ่ม */
-}
-
-/* วงกลมสีขาว */
-.profile-circle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: #0b1335;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  border: 2px solid #fff; /* ถ้าต้องการเส้นขอบขาวรอบวงกลม */
-}
-
-/* ปุ่ม Log-out */
-.logout-btn {
-  background: #fff;
-  color: #0b1335;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  background-color: #e0e0e0;
-}
-</style>
-
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <img src="https://i.pinimg.com/736x/fb/2c/55/fb2c55c16dfd31f017f1b0ddf9c79fdb.jpg" alt="User">
-      <p><strong>Username :</strong> Nagumo</p>
-      <p><strong>Email :</strong> ng@gmail.com</p>
-
-     <div class="menu">
-      <div class="active">เกมในตะกร้า</div>
-      <a href="mygame">Mygame</a>
-      <a href="wallet">Wallet</a>
-      <a href="history">History</a>
-    </div>
-  </div>
-
-    <!-- Main Content -->
-    <div class="content">
-      <button class="back-btn" onclick="window.location.href='gamesell'">ย้อนกลับ</button>
-
-      <div class="content-header">เกมในตะกร้าของคุณ</div>
-      <div class="cart-items">
-        
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <input type="checkbox" class="checkbox" checked>
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
-          </div>
-          <button class="remove-btn">ลบเกม</button>
-        </div>
-
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <input type="checkbox" class="checkbox" checked>
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
-          </div>
-          <button class="remove-btn">ลบเกม</button>
-        </div>
-
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <input type="checkbox" class="checkbox" checked>
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
-          </div>
-          <button class="remove-btn">ลบเกม</button>
-        </div>
-
-        <div class="total">
-          ยอดเงินรวม : 600 Bath
-          <button class="pay-btn" onclick="window.location.href='mpm-basket'">ชำระเงิน</button>
-        </div>
+    <a href="profile" class="money-btn other">
+      <div class="profile-circle">
+        <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+        <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
       </div>
+    </a>
+    
+  </div>
+</header>
+<div class="container">
+  <div class="content">
+    <div class="content-header">เกมในตะกร้าของคุณ</div>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let game of cart">
+        <div class="cart-item-left">
+          <input type="checkbox" class="checkbox" checked>
+          <img [src]="game.image || 'https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg'" [alt]="game.game_name">
+          <div class="cart-info">
+            <p><b>Name :</b> {{ game.game_name }}</p>
+            <p><b>ประเภท :</b> {{ game.category_type || 'Game Adventure' }}</p>
+            <p><b>ราคา :</b> {{ game.price }} Bath</p>
+          </div>
+        </div>
+        <button class="remove-btn" (click)="removeItem(game.game_id)">ลบเกม</button>
+      </div>
+
+      <div class="total" *ngIf="cart.length > 0">
+        ยอดเงินรวม : {{ discountedTotal || total }} Bath
+      </div>
+
+      <div class="discount-section" *ngIf="cart.length > 0">
+  <input type="text" [(ngModel)]="discountCode" placeholder="กรอกโค้ดส่วนลด" class="discount-input">
+  <button type="button" class="btn discount-btn" (click)="applyDiscount()">ใช้โค้ด</button>
+</div>
+
+<div class="pay-wrapper" *ngIf="cart.length > 0">
+  <button class="btn pay-btn" (click)="pay()">ชำระเงิน</button>
+</div>
+
     </div>
   </div>
+</div>
+
+
+
+<script>
+function openModal() {
+  document.getElementById('paymentModal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('paymentModal').classList.remove('show');
+}
+</script>
 
 </body>
 </html>

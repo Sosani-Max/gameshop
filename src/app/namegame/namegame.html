@@ -36,29 +36,17 @@
     .nav-right {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 15px;
     }
 
     .nav-right a {
-      text-decoration: none;
       color: white;
+      text-decoration: none;
       font-weight: 500;
     }
 
     .nav-right a:hover {
       text-decoration: underline;
-    }
-
-    .search-box {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .search-box input {
-      padding: 6px 10px;
-      border: none;
-      border-radius: 6px;
     }
 
     .profile-circle {
@@ -81,43 +69,17 @@
       margin: 40px 0 0 60px;
     }
 
-/* ปุ่มย้อนกลับ (ลูกศรในวงกลม) */
-.back-icon {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  margin: 15px 0 20px 60px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #0b1335;
-  border: 2px solid #0b1335;
-  border-radius: 50%;
-  text-decoration: none;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
-  transition: all 0.25s ease;
-  background-color: #fff;
-}
-
-.back-icon:hover {
-  background-color: #0b1335;
-  color: #fff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-}
-
-
     /* Game Card */
-    .game-card {
-      max-width: 600px;
-      margin: 0 auto;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-    }
+.game-card {
+  max-width: 600px;
+  margin: 60px auto 0 auto; /* เพิ่ม margin-top จาก 0 -> 60px */
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+}
+
 
     .game-card img {
       width: 100%;
@@ -131,11 +93,6 @@
       align-items: center;
       padding: 15px 20px;
       font-weight: bold;
-    }
-
-    .left-info {
-      color: #0b1335;
-      font-size: 14px;
     }
 
     .btn-group {
@@ -198,48 +155,59 @@
       font-weight: 700;
     }
 
+    /* Nav buttons */
+    .logout-link {
+      text-decoration: none;
+      font-weight: 500;
+      color: white; /* Home เปลี่ยนเป็นสีขาวเหมือนปุ่มอื่น */
+    }
+
+    .logout-link:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
-
 <body>
+
   <!-- Header -->
   <header>
     <div class="logo">GameShop</div>
     <div class="nav-right">
-              <a href="admin-profile">
+      <!-- Profile Circle -->
+      <a href="admin-profile">
         <div class="profile-circle">A</div>
       </a>
-      <a href="ี">Log-out</a>
+      <!-- ปุ่มด้านบน -->
+      <a href="admin" class="logout-link">Home</a>
+      <a href="promotion" class="logout-link">Promotion</a>
+      <a href="user" class="logout-link">User</a>
     </div>
   </header>
 
-  <!-- Title -->
-  <h1 class="game-title">Dead by</h1>
-  <a href="admin" class="back-icon">←</a>
-
   <!-- Game Card -->
-  <div class="game-card">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Dead_by_Daylight_cover_art.jpg" alt="Dead by Daylight">
+  <div class="game-container" *ngIf="selectedGame">
 
-    <div class="card-footer">
-      <div class="left-info">ยอดขาย 1000</div>
-      <div class="btn-group">
-        <button class="btn delete-btn">Delete</button>
-        <a href="editgame" class="btn edit-btn">Edit</a>
+    <!-- Title -->
+    <div class="game-card">
+      <h1>{{ selectedGame.game_name }}</h1>
+      <img [src]="selectedGame.image" [alt]="selectedGame.game_name" class="game-image">
+      <div class="card-footer">
+        <p>จำนวนยอดขาย : {{ selectedGame.sale_count }}</p>
+        <div class="btn-group">
+          <button class="btn delete-btn">Delete</button>
+          <a href="editgame" class="btn edit-btn">Edit</a>
+        </div>
+        <p>ราคา : {{ selectedGame.price }} Bath</p>
       </div>
-      <div class="price">259 Bath</div>
     </div>
+
+    <!-- Detail -->
+    <div class="detail-section">
+      <div class="detail-title">รายละเอียด</div>
+      <p class="desc">รายละเอียด : {{ selectedGame.description }}</p>
+    </div>
+
   </div>
 
-  <!-- Detail -->
-  <div class="detail-section">
-    <div class="detail-title">รายละเอียด</div>
-    <p class="detail-text">
-      <b>Dead by Daylight</b> เป็นเกมสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1)
-      ซึ่งผู้เล่นหนึ่งคนจะรับบทบาทเป็นฆาตกรที่ไล่ล่าเหยื่อ
-      และอีกสี่คนจะเล่นเป็นผู้รอดชีวิตที่พยายามหลบหนีจากการตามล่า
-      และหลบเลี่ยงไม่ให้ถูกจับ ถูกทรมาน และถูกฆ่า
-    </p>
-  </div>
 </body>
 </html>

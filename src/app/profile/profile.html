@@ -193,9 +193,6 @@
       <a routerLink="/login">
         <button>Log-out</button>
       </a>
-      <a routerLink="/profile">
-        <div class="profile-circle">A</div>
-      </a>
     </div>
   </header>
 
@@ -203,28 +200,26 @@
     <h1>Edit Profile</h1>
 
     <!-- Profile Picture -->
-    <div class="profile-pic" onclick="document.getElementById('fileInput').click()">
-      <img id="preview" src="" alt="" style="display: none;">
-      <span id="chooseText">Choose photo</span>
-      <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="previewImage(event)">
+    <div class="profile-pic" (click)="fileInput.click()">
+      <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+      <span *ngIf="!avatarUrl">Choose photo</span>
+      <input #fileInput type="file" accept="image/*" style="display:none" (change)="onFileSelected($event)">
     </div>
 
     <!-- Info Box -->
-    <div class="info-box">
+    <form [formGroup]="profileForm" class="info-box">
       <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Enter username">
+      <input id="username" type="text" formControlName="name" placeholder="Enter username">
 
       <label for="email">Email</label>
-      <input type="email" id="email" placeholder="Enter email">
-
-      <label for="password">Password</label>
-      <input type="password" id="password" placeholder="Enter new password">
+      <input id="email" type="email" formControlName="email" placeholder="Enter email">
 
       <div class="btn-group">
-        <button class="save-btn">Save Changes</button>
-        <a href="/homelogin"><button type="button" class="back-btn">Back</button></a>
+        <button class="save-btn" (click)="saveChanges()">Save Changes</button>
+        <a routerLink="/homelogin"><button type="button" class="back-btn">Back</button></a>
       </div>
-    </div>
+    </form>
+
   </div>
 
   <script>

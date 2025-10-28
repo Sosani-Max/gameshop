@@ -1,292 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GameShop</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameShop</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+body { background-color: #f5f5f5; color: #0b1335; }
 
-    body {
-      background-color: #f5f5f5;
-      color: #0b1335;
-    }
+/* Header */
+header {
+  background-color: #0b1335;
+  color: white;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.logo { font-size: 1.5rem; font-weight: bold; }
+.search-login { display: flex; align-items: center; gap: 10px; }
+.money-btn { text-decoration: none; padding: 5px 10px; font-weight: bold; transition: 0.2s; display: inline-block; background: none; }
+.money-btn.home { color: red; }
+.money-btn.other { color: white; }
+.profile-circle { width: 35px; height: 35px; border-radius: 50%; background-color: white; display: flex; justify-content: center; align-items: center; color: #0b1335; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+.profile-circle:hover { opacity: 0.85; }
+.profile-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-    header {
-      background-color: #0b1335;
-      color: white;
-      padding: 10px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* All Games + Search */
+.games-top-section {
+  max-width: 1000px;
+  margin: 30px auto;
+  padding: 0 20px;
+}
+.games-top-section h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0b1335;
+  text-align: left;
+  margin-bottom: 15px;
+}
+.search-section {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 25px;
+}
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 30px;
+  padding: 4px 10px;
+  overflow: hidden;
+  box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+}
+.search-box input {
+  border: none; outline: none; padding: 8px 10px;
+  font-size: 15px; width: 220px; border-radius: 20px;
+}
+.search-box button {
+  background-color: #ffb703; border: none;
+  color: #0b1335; font-weight: bold;
+  padding: 8px 15px; border-radius: 20px;
+  cursor: pointer; transition: background-color 0.2s;
+}
+.search-box button:hover { background-color: #ffd166; }
 
-    header .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
+/* Games Grid */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+}
+.game-card {
+  background: linear-gradient(145deg, #fff, #f0faff);
+  border-radius: 12px;
+  box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+  overflow: hidden;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.game-card:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 16px 28px rgba(0,0,0,0.25); }
+.game-card img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; }
+.game-name { padding: 10px; font-weight: bold; color: #0b1335; font-size: 1rem; }
+.game-price { padding-bottom: 10px; color: #06d6a0; font-weight: bold; font-size: 0.95rem; }
 
-    header .search-login {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
+/* Top Sellers Modern */
+.top-sellers { max-width: 1000px; margin: 50px auto; position: relative; padding: 0 20px; }
+.top-sellers h2 {
+  margin-bottom: 20px;
+  color: red; /* ตัวหนังสือสีแดง */
+  font-size: 3rem; /* ขนาดใหญ่ */
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #00000055;
+}
+.seller-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 15px; scroll-behavior: smooth; }
+.seller-container::-webkit-scrollbar { height: 8px; }
+.seller-container::-webkit-scrollbar-thumb { background-color: #06d6a0; border-radius: 4px; }
+.seller-container::-webkit-scrollbar-track { background: #eee; }
 
-    header input[type="text"] {
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: none;
-    }
+/* Seller Card */
+.seller-card {
+  min-width: 180px;
+  background: linear-gradient(145deg, #fff, #ffe6e6);
+  border-radius: 15px;
+  /* เอากรอบออก */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.seller-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 16px 28px rgba(0,0,0,0.25);
+}
+.seller-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; }
+.seller-card .rank { font-weight: bold; color: #ff6b6b; font-size: 1.2rem; margin-bottom: 3px; }
+.seller-card .price { color: #0b1335; font-weight: 700; font-size: 1rem; }
 
-    header button {
-      background-color: white;
-      color: #0b1335;
-      border: none;
-      padding: 5px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+/* Arrow Buttons */
+.arrow { position: absolute; top: 35%; font-size: 1.8rem; background-color: rgba(11,19,53,0.8); color: white; padding: 7px 12px; border-radius: 50%; cursor: pointer; user-select: none; transition: background-color 0.2s, transform 0.2s; }
+.arrow:hover { background-color: rgba(11,19,53,1); transform: scale(1.1); }
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
 
-    /* ✅ วงกลมเล็ก ๆ ข้าง Log-out */
-    .profile-circle {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #0b1335;
-      font-size: 14px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .profile-circle:hover {
-      background-color: #ddd;
-    }
-
-    h1 {
-      text-align: center;
-      margin: 30px 0 20px 0;
-      font-size: 2rem;
-    }
-
-    /* Dropdown filter */
-    .dropdown {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .dropbtn {
-      background-color: #e0e0e0;
-      color: #000;
-      padding: 10px 20px;
-      font-size: 16px;
-      border: none;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #f9f9f9;
-      min-width: 180px;
-      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-      z-index: 1;
-      border-radius: 5px;
-      overflow: hidden;
-    }
-
-    .dropdown-content div {
-      padding: 10px 15px;
-      cursor: pointer;
-      border-bottom: 1px solid #ddd;
-    }
-
-    .dropdown-content div:last-child {
-      border-bottom: none;
-    }
-
-    .dropdown-content div:hover {
-      background-color: #e0e0e0;
-    }
-
-    .show {
-      display: block;
-    }
-
-    /* Game Grid */
-    .game-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      max-width: 1000px;
-      margin: 0 auto 50px auto;
-      padding: 0 20px;
-    }
-
-    .game-card {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-
-    .game-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
-    }
-
-    .game-card .game-name {
-      padding: 10px;
-      font-weight: bold;
-    }
-
-    .game-card .game-price {
-      padding-bottom: 10px;
-      color: #555;
-    }
-  </style>
+</style>
 </head>
-
 <body>
-  <header>
-    <div class="logo">GameShop</div>
-    <div class="search-login">
-      <a routerLink="/login">
-        <button>Log-out</button>
+<header>
+  <div class="logo">GameShop</div>
+  <div class="search-login">
+    <a href="homelogin" class="money-btn home">Home</a>
+    <a href="basket" class="money-btn other">Basket</a>
+    <a href="mygame" class="money-btn other">My Game</a>
+    <a href="history" class="money-btn other">History</a>
+    <a href="wallet" class="money-btn other" *ngIf="wallet !== null">
+        {{ wallet }} บาท
       </a>
-
-
-      <a routerLink="/profile">
-  <div class="profile-circle">A</div>
-</a>
-
-      <input type="text" placeholder="Search game">
-    </div>
-  </header>
-
-  <h1>Games</h1>
-
-  <!-- Dropdown Filter -->
-  <div class="dropdown">
-    <button onclick="toggleDropdown()" class="dropbtn">Game All &#9776;</button>
-    <div id="myDropdown" class="dropdown-content">
-      <div onclick="filterGames('All')">Game All</div>
-      <div onclick="filterGames('Adventure')">Game Adventure</div>
-      <div onclick="filterGames('Card')">Game Card</div>
-      <div onclick="filterGames('RPG')">Game RPG</div>
-      <div onclick="filterGames('Puzzle')">Game Puzzle</div>
-      <div onclick="filterGames('Sport')">Game Sport</div>
-    </div>
+    <a routerLink="/profile" class="money-btn other">
+      <div class="profile-circle">
+        <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+        <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
+      </div>
+    </a>
   </div>
+</header>
 
-  <div class="game-grid" id="gameGrid">
-
-  <a href="gamesell" class="game-card" data-category="Shooter">
-    <img src="https://upload.wikimedia.org/wikipedia/en/0/0b/Valorant_cover_art.jpg" alt="Valorant">
-    <div class="game-name">VALORANT</div>
-    <div class="game-price">199 Bath</div>
+<!-- Top Sellers -->
+<section class="top-sellers">
+  <h2>Top Sellers</h2>
+  <div class="arrow left" (click)="scrollLeft()">&#8592;</div>
+  <div class="arrow right" (click)="scrollRight()">&#8594;</div>
+  <div class="seller-container" id="sellerContainer">
+  <a *ngFor="let game of topGames" class="seller-card" (click)="onSelectGame(game)">
+    <div class="rank">{{ game.rank }}</div>
+    <img [src]="game.image" [alt]="game.game_name">
+    <div class="price">{{ game.price }} Bath</div>
   </a>
-
-  <a href="gamesell" class="game-card" data-category="Shooter">
-    <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/PUBG_cover_art.jpg" alt="PUBG">
-    <div class="game-name">PUBG</div>
-    <div class="game-price">232 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="RPG">
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
-    <div class="game-name">MINECRAFT</div>
-    <div class="game-price">499 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="Adventure">
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/53/Black_Myth_Wukong_cover.jpg" alt="Wukong">
-    <div class="game-name">BLACK MYTH: WUKONG</div>
-    <div class="game-price">899 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="Adventure">
-    <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V_cover.jpg" alt="GTA V">
-    <div class="game-name">GTA V</div>
-    <div class="game-price">169 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="Simulation">
-    <img src="https://upload.wikimedia.org/wikipedia/en/5/5f/The_Sims_4_cover.jpg" alt="The Sims">
-    <div class="game-name">THE SIMS</div>
-    <div class="game-price">789 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="RPG">
-    <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-    <div class="game-name">ROBLOX</div>
-    <div class="game-price">99 Bath</div>
-  </a>
-
-  <a href="gamesell" class="game-card" data-category="Shooter">
-    <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Call_of_Duty_Modern_Warfare_2_cover.jpg" alt="COD">
-    <div class="game-name">CALL OF DUTY</div>
-    <div class="game-price">123 Bath</div>
-  </a>
-
 </div>
 
 
-  <script>
-    // Toggle dropdown
-    function toggleDropdown() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
+</section>
 
-    // Close dropdown if clicked outside
-    window.onclick = function (e) {
-      if (!e.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
-      }
-    }
 
-    // Filter games
-    function filterGames(category) {
-      const cards = document.querySelectorAll('.game-card');
-      cards.forEach(card => {
-        if (category === 'All' || card.getAttribute('data-category') === category) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      // Update button text
-      document.querySelector('.dropbtn').textContent = 'Game ' + category + ' \u2630';
-    }
-  </script>
+
+<!-- All Games + Search -->
+<div class="games-top-section">
+  <h1>All Games</h1>
+  <div class="search-section">
+    <div class="search-box">
+      <input type="text" placeholder="Search game..." [(ngModel)]="searchTerm" (input)="onSearchChange()" />
+      <div class="search-icon">🔍</div>
+    </div>
+  </div>
+  <div class="game-grid" id="gameGrid">
+    <a *ngFor="let game of games" class="game-card" (click)="onSelectGame(game)">
+      <img [src]="game.image" [alt]="game.game_name">
+      <div class="game-name">{{ game.game_name }}</div>
+      <div class="game-price">{{ game.price }} Bath</div>
+    </a>
+  </div>
+</div>
+
+<script>
+function searchGame() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('.game-card');
+  cards.forEach(card => {
+    const name = card.querySelector('.game-name').textContent.toLowerCase();
+    card.style.display = name.includes(query) ? 'block' : 'none';
+  });
+}
+function scrollLeft() { document.getElementById('sellerContainer').scrollBy({ left: -220, behavior: 'smooth' }); }
+function scrollRight() { document.getElementById('sellerContainer').scrollBy({ left: 220, behavior: 'smooth' }); }
+</script>
 </body>
-
 </html>

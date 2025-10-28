@@ -1,0 +1,31 @@
+.game-image {
+  width: 100%;         /* รูปเต็ม container */
+  max-width: 400px;    /* จำกัดความกว้างสูงสุด */
+  height: auto;        /* รักษาอัตราส่วน */
+  display: block;
+  margin: 10px auto;   /* จัดกลางแนวนอน */
+  border-radius: 8px;  /* มุมโค้ง */
+  object-fit: cover;   /* crop รูปให้เต็มขอบถ้าจำเป็น */
+}
+.profile-circle {
+  width: 50px;       /* ขนาดวงกลม */
+  height: 50px;
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  overflow: hidden;   /* ตัดส่วนเกินของรูป */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-circle img {
+  width: 100%;        /* เติมเต็ม div */
+  height: 100%;       /* เติมเต็ม div */
+  object-fit: cover;  /* crop รูปให้พอดีวงกลม */
+}
+.game-card {
+  text-decoration: none; /* เอาเส้นใต้ */
+  color: inherit;        /* ให้สีตัวหนังสือเหมือนเดิม */
+}

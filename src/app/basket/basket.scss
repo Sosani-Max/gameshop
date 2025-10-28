@@ -1,0 +1,79 @@
+.profile-circle {
+  width: 50px;       /* ขนาดวงกลม */
+  height: 50px;
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  overflow: hidden;   /* ตัดส่วนเกินของรูป */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-circle img {
+  width: 100%;        /* เติมเต็ม div */
+  height: 100%;       /* เติมเต็ม div */
+  object-fit: cover;  /* crop รูปให้พอดีวงกลม */
+}
+.game-card {
+  text-decoration: none; /* เอาเส้นใต้ */
+  color: inherit;        /* ให้สีตัวหนังสือเหมือนเดิม */
+}
+.discount-section {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+
+  .discount-input {
+    flex: 1;
+    max-width: 200px;      // ลดความยาวกรอบ
+    padding: 8px 12px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: #6c63ff;
+    }
+  }
+
+  .discount-btn {
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #e68900;
+    }
+  }
+}
+
+.pay-wrapper {
+  display: flex;
+  justify-content: flex-start;  // ปุ่มอยู่ด้านขวา
+  margin-top: 15px;
+
+  .pay-btn {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+      background-color: #388e3c;
+      transform: translateY(-2px);
+    }
+  }
+}

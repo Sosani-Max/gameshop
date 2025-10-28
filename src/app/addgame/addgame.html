@@ -177,7 +177,10 @@
         <button>Log-out</button>
       </a>
       <a routerLink="/profile">
-        <div class="profile-circle">A</div>
+        <div class="profile-circle">
+          <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+          <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
+        </div>
       </a>
     </div>
   </header>
@@ -187,12 +190,10 @@
   <h1>Add A Game</h1>
 
   <div class="profile-pic" (click)="fileInput.click()">
-    <img *ngIf="imagePreview; else chooseText" [src]="imagePreview" alt="Game Image">
-    <ng-template #chooseText>
-      <span>Choose photo</span>
-    </ng-template>
-    <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" style="display:none">
-  </div>
+        <img *ngIf="previewUrl" [src]="previewUrl" alt="Profile" width="110" height="110">
+        <span *ngIf="!previewUrl">Choose photo</span>
+        <input type="file" #fileInput accept="image/*" style="display: none" (change)="onFileSelected($event)">
+      </div>
 
   <div class="info-box">
     <input type="text" [(ngModel)]="game_name" placeholder="ชื่อเกม">
@@ -206,6 +207,8 @@
       <option [value]="3">Puzzle</option>
       <option [value]="4">Card</option>
       <option [value]="5">Sport</option>
+      <option [value]="6">FPS</option>
+      <option [value]="7">Horror</option>
     </select>
 
     <button class="save-btn" (click)="saveGame()">Save</button>

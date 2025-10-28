@@ -6,315 +6,117 @@
   <title>GameShop - My Game</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: #f5f5f5; color: #0b1335; }
 
-    body {
-      background-color: #f5f5f5;
-      color: #0b1335;
-    }
-
+    /* Header */
     header {
       background-color: #0b1335;
       color: white;
-      padding: 10px 50px;
+      padding: 10px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    .search-login { display: flex; align-items: center; gap: 10px; }
+    .money-btn { text-decoration: none; padding: 5px 10px; font-weight: bold; transition: 0.2s; display: inline-block; background: none; }
+    .money-btn.home { color: white; }
+    .money-btn.basket { color: red; }
+    .money-btn.other { color: white; }
+    .profile-circle {
+      width: 35px; height: 35px; border-radius: 50%;
+      background-color: white; display: flex; justify-content: center; align-items: center;
+      color: #0b1335; font-size: 14px; font-weight: bold; cursor: pointer;
     }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .header-right input {
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: none;
-    }
-
-    .profile {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      cursor: pointer;
-    }
-
-    .profile img {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-    }
-
-    .logout-btn {
-      background: white;
-      color: #0b1335;
-      border: none;
-      padding: 6px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
+    .profile-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
     /* Layout */
-    .container {
-      display: flex;
-      margin: 20px 50px;
-    }
+    .container { display: flex; margin: 20px 50px; }
+    .sidebar { width: 250px; background-color: #0b1335; border-radius: 8px; padding: 20px; text-align: center; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .sidebar img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 15px; object-fit: cover; }
+    .sidebar p { margin-bottom: 10px; font-size: 14px; }
+    .menu { margin-top: 30px; }
+    .menu div, .menu a { display: block; padding: 15px; color: white; cursor: pointer; font-weight: bold; border-bottom: 1px solid #1b2558; border-radius: 5px; text-decoration: none; text-align: center; margin-bottom: 5px; }
+    .menu div:hover, .menu div.active, .menu a:hover { background-color: #1b2558; }
 
-    .sidebar {
-      width: 250px;
-      background-color: #0b1335;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
+    .content { flex: 1; margin-left: 30px; }
+    .back-btn { background-color: #0b1335; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 15px; display: block; text-align: left; }
+    .back-btn:hover { background-color: #1b2558; }
 
-    .sidebar img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      margin-bottom: 15px;
-      object-fit: cover;
-    }
+    .cart-items { background-color: #fff; padding: 20px; border-radius: 0 0 5px 5px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    .cart-item { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #ddd; padding: 15px 0; }
+    .cart-item:last-child { border-bottom: none; }
+    .cart-item-left { display: flex; align-items: center; gap: 15px; }
+    .cart-item img { width: 120px; border-radius: 5px; }
+    .cart-info { text-align: left; font-size: 14px; color: #333; }
+    .cart-info p { margin-bottom: 3px; }
 
-    .sidebar p {
-      margin-bottom: 10px;
-      font-size: 14px;
-    }
-
-    .menu {
-      margin-top: 30px;
-    }
-
-    .menu div, .menu a {
-      display: block;
-      padding: 15px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      border-bottom: 1px solid #1b2558;
-      border-radius: 5px;
-      text-decoration: none;
-      text-align: center;
-      margin-bottom: 5px;
-    }
-
-    .menu div:hover, .menu div.active, .menu a:hover {
-      background-color: #1b2558;
-    }
-
-    /* Content */
-    .content {
-      flex: 1;
-      margin-left: 30px;
-    }
-
-    .back-btn {
-      background-color: #0b1335;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-      margin-bottom: 15px;
-      display: block;
-      text-align: left;
-    }
-
-    .back-btn:hover {
-      background-color: #1b2558;
-    }
-
-    .content-header {
-      background-color: #eaeaea;
-      padding: 15px;
-      font-weight: bold;
-      border-radius: 5px 5px 0 0;
-    }
-
-    .cart-items {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 0 0 5px 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #ddd;
-      padding: 15px 0;
-    }
-
-    .cart-item:last-child {
-      border-bottom: none;
-    }
-
-    .cart-item-left {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    .cart-item img {
-      width: 120px;
-      border-radius: 5px;
-    }
-
-    .cart-info {
-      text-align: left;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .cart-info p {
-      margin-bottom: 3px;
-    }
-
+    .pay-btn { background-color: #00b050; color: white; border: none; padding: 10px 25px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-top: 15px; }
+    .pay-btn:hover { background-color: #008f3e; }
   </style>
 </head>
 <body>
 
- <header>
-    <div class="logo">GameShop</div>
-    <div class="search-login">
-      <a href="profile">
-        <div class="profile-circle">A</div>
+<!-- Header -->
+<!-- Header -->
+<header>
+  <div class="logo">GameShop</div>
+  <div class="search-login">
+    <a href="homelogin" class="money-btn home">Home</a>
+    <a href="basket" class="money-btn other">Basket</a> <!-- สีขาว -->
+    <a href="mygame" class="money-btn active">My Game</a> <!-- สีแดง -->
+    <a href="history" class="money-btn other">History</a>
+    <a href="wallet" class="money-btn other" *ngIf="wallet !== null">
+        {{ wallet }} บาท
       </a>
-      <a href="login">
-        <button>Log-out</button>
-      </a>
-    </div>
-  </header>
+    <a href="profile" class="money-btn other">
+      <div class="profile-circle">
+        <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+        <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
+      </div>
+    </a>
+  </div>
+</header>
 
-  <style>
-.search-login {
-  display: flex;
-  align-items: center;
-  gap: 10px; /* ระยะห่างระหว่างวงกลมกับปุ่ม */
-}
-
-/* วงกลมสีขาว */
-.profile-circle {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  background-color: #fff;
-  color: #0b1335;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  font-size: 14px;
-  cursor: pointer;
-  border: 2px solid #fff; /* ถ้าต้องการเส้นขอบขาวรอบวงกลม */
-}
-
-/* ปุ่ม Log-out */
-.logout-btn {
-  background: #fff;
-  color: #0b1335;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.logout-btn:hover {
-  background-color: #e0e0e0;
-}
+<style>
+.money-btn.home { color: white; }
+.money-btn.other { color: white; }
+.money-btn.active { color: red; } /* My Game */
 </style>
 
-  <div class="container">
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <img src="https://i.pinimg.com/736x/fb/2c/55/fb2c55c16dfd31f017f1b0ddf9c79fdb.jpg" alt="User">
-      <p><strong>Username :</strong> Nagumo</p>
-      <p><strong>Email :</strong> ng@gmail.com</p>
 
-     <div class="menu">
-      <a href="basket">เกมในตะกร้า</a>
-      <div class="active">Mygame</div>
-      <a href="wallet">Wallet</a>
-      <a href="history">History</a>
-    </div>
-  </div>
+<div class="container">
+  <div class="content">
+    <p><b>เกมทั้งหมด :</b> {{ games.length }} เกม</p>
 
-    <!-- Main Content -->
-    <div class="content">
-      <button class="back-btn" onclick="window.location.href='gamesell'">ย้อนกลับ</button>
-
-      <p><b>เกมทั้งหมด :</b> 3 เกม</p>
-      <div class="cart-items">
-        
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>รายละเอียด :</b>เป็นเกมสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1) ซึ่งผู้เล่นหนึ่งคนจะรับ
-บทบาทเป็นฆาตกรป่าเถื่อนและอีกสี่คนจะเล่นเป็นผู้รอดชีวิตที่พยายามหลบหนีจาก
-ฆาตกรและหลบเลี่ยงไม่ให้ถูกจับ ถูกทรมาน และถูกฆ่า</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
+    <div class="cart-items">
+      <div class="cart-item" *ngFor="let game of games">
+        <div class="cart-item-left">
+          <img [src]="game.image" alt="Game">
+          <div class="cart-info">
+            <p><b>Name :</b> {{ game.game_name }}</p>
+            <p><b>ประเภท :</b> {{ game.category }}</p>
+            <p><b>ราคา :</b> {{ game.price }} Bath</p>
+            <p><b>รายละเอียด :</b> {{ game.description }}</p>
+            <p><b>วันที่ขาย :</b> {{ game.release_date | date:'d MMMM yyyy' }}</p>
           </div>
         </div>
-
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>รายละเอียด :</b>เป็นเกมสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1) ซึ่งผู้เล่นหนึ่งคนจะรับ
-บทบาทเป็นฆาตกรป่าเถื่อนและอีกสี่คนจะเล่นเป็นผู้รอดชีวิตที่พยายามหลบหนีจาก
-ฆาตกรและหลบเลี่ยงไม่ให้ถูกจับ ถูกทรมาน และถูกฆ่า</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="cart-item">
-          <div class="cart-item-left">
-            <img src="https://upload.wikimedia.org/wikipedia/en/8/89/Dead_by_Daylight_Steam_header.jpg" alt="Game">
-            <div class="cart-info">
-              <p><b>Name :</b> Dead by Daylight</p>
-              <p><b>ประเภท :</b> Game Adventure</p>
-              <p><b>ราคา :</b> 289 Bath</p>
-              <p><b>รายละเอียด :</b>เป็นเกมสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1) ซึ่งผู้เล่นหนึ่งคนจะรับ
-บทบาทเป็นฆาตกรป่าเถื่อนและอีกสี่คนจะเล่นเป็นผู้รอดชีวิตที่พยายามหลบหนีจาก
-ฆาตกรและหลบเลี่ยงไม่ให้ถูกจับ ถูกทรมาน และถูกฆ่า</p>
-              <p><b>วันที่ขาย :</b> 1 กันยายน 2568</p>
-              <p><b>อันดับเกมยอดนิยม :</b> 2</p>
-            </div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
+</div>
+
+
+<script>
+function openModal() {
+  document.getElementById('paymentModal').classList.add('show');
+}
+function closeModal() {
+  document.getElementById('paymentModal').classList.remove('show');
+}
+</script>
 
 </body>
 </html>

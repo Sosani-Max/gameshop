@@ -9,16 +9,11 @@ import { AppService } from './app.service';
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App implements OnInit {
+export class App  {
   protected readonly title = signal('GameShop');
   products = signal<any[]>([]);
 
   constructor(private appService: AppService) {}
 
-  ngOnInit() {
-    this.appService.getProducts().subscribe({
-      next: (data) => this.products.set(data),
-      error: (err) => console.error('โหลดข้อมูลไม่สำเร็จ:', err)
-    });
-  }
+  
 }

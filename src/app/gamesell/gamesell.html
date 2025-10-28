@@ -6,59 +6,30 @@
   <title>GameShop - Game Sell</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Inter', sans-serif;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
+    body { background-color: #f5f5f5; color: #0b1335; }
 
-    body {
-      background-color: #f5f5f5;
-      color: #0b1335;
-    }
-
+    /* Header */
     header {
       background-color: #0b1335;
       color: white;
-      padding: 10px 50px;
+      padding: 10px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
     }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-
-    .search-login {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-    }
-
-    header input[type="text"] {
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: none;
-    }
-
-    header button {
-      background-color: white;
-      color: #0b1335;
-      border: none;
-      padding: 5px 12px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
+    .logo { font-size: 1.5rem; font-weight: bold; }
+    .search-login { display: flex; align-items: center; gap: 10px; }
+    .money-btn { text-decoration: none; padding: 5px 10px; font-weight: bold; transition: 0.2s; display: inline-block; background: none; }
+    .money-btn.home { color: white; }
+    .money-btn.other { color: white; }
+    .money-btn.active { color: red; }
     .profile-circle {
       width: 35px;
       height: 35px;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: white;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -67,36 +38,14 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    .profile-circle:hover {
-      background-color: #ddd;
+    .profile-circle img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
-    h1 {
-      text-align: center;
-      margin: 40px 0 20px 0;
-      font-size: 2.5rem;
-      font-weight: 700;
-    }
-
-    /* ปุ่มย้อนกลับ */
-    .back-btn {
-      display: block;
-      width: fit-content;
-      margin: 0 auto 20px auto;
-      background-color: #0b1335;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: bold;
-      transition: background-color 0.2s;
-    }
-
-    .back-btn:hover {
-      background-color: #1d2970;
-    }
+    h1 { text-align: center; margin: 40px 0 20px 0; font-size: 2.5rem; font-weight: 700; }
 
     .game-container {
       background-color: white;
@@ -106,110 +55,126 @@
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       overflow: hidden;
     }
-
     .game-container img {
       width: 100%;
       height: 300px;
       object-fit: cover;
     }
 
-    .game-info {
-      padding: 20px;
-      text-align: center;
-    }
+    .game-info { padding: 20px; text-align: center; }
+    .game-info h2 { font-size: 1.4rem; margin-bottom: 8px; }
+    .game-info p { margin-bottom: 5px; font-size: 0.95rem; color: #333; }
+    .game-info .desc { text-align: justify; margin-top: 15px; line-height: 1.6; color: #444; }
 
-    .game-info h2 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-
-    .game-info p {
-      margin-bottom: 5px;
-      font-size: 0.95rem;
-      color: #333;
-    }
-
-    .game-info .desc {
-      text-align: justify;
-      margin-top: 15px;
-      line-height: 1.6;
-      color: #444;
-    }
-
-    .buttons {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-    }
-
+    /* ปุ่ม Buy และ ตะกร้า ให้เท่ากัน */
+    .buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
     .btn {
-      padding: 10px 20px;
+      width: 120px;       /* กำหนดความกว้างเท่ากัน */
+      height: 45px;       /* กำหนดความสูงเท่ากัน */
+      font-size: 1rem;
       border: none;
-      border-radius: 20px;
+      border-radius: 12px;
       font-weight: bold;
       cursor: pointer;
       color: white;
       transition: background-color 0.2s;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;           /* ช่องว่างระหว่างไอคอนกับข้อความ */
+    }
+    .cart { background-color: orange; }
+    .cart:hover { background-color: darkorange; }
+    .buy { background-color: green; }
+    .buy:hover { background-color: darkgreen; }
+
+    /* ข้อความแจ้งเตือนเติมตะกร้าสำเร็จ */
+    #payment-notice {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 25px 40px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
 
-    .cart {
-      background-color: orange;
+            /* ข้อความแจ้งเตือนเติมตะกร้าสำเร็จ */
+    #payment-notice {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #4CAF50;
+      color: white;
+      padding: 20px 20px;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      z-index: 1000;
     }
-
-    .cart:hover {
-      background-color: darkorange;
-    }
-
-    .buy {
-      background-color: green;
-    }
-
-    .buy:hover {
-      background-color: darkgreen;
-    }
-
-    
   </style>
 </head>
 
 <body>
+  <!-- Header -->
   <header>
     <div class="logo">GameShop</div>
     <div class="search-login">
-      <a href="profile.html">
-        <div class="profile-circle">A</div>
+      <a href="homelogin" class="money-btn home">Home</a>
+      <a href="basket" class="money-btn other">Basket</a>
+      <a href="mygame" class="money-btn other">My Game</a>
+      <a href="history" class="money-btn other">History</a>
+      <a href="wallet" class="money-btn other" *ngIf="wallet !== null">
+        {{ wallet }} บาท
       </a>
-      <a href="login">
-        <button>Log-out</button>
+      <a href="profile" class="money-btn other">
+        <div class="profile-circle">
+        <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+        <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
+      </div>
       </a>
     </div>
   </header>
 
   <h1>Game Sell</h1>
 
-  <!-- ปุ่มย้อนกลับ -->
-  <button class="back-btn" onclick="window.location.href='homelogin'">← Back</button>
+  <div class="game-container" *ngIf="selectedGame">
+  <div class="game-info">
+    <h2>Name : {{ selectedGame.game_name }}</h2>
 
-  <div class="game-container">
-    <div class="game-info">
-      <h2>Name : Dead by Daylight</h2>
-      <p>ประเภท : Game Adventure</p>
-      <p>ราคา : 259 Bath</p>
-      <p>วันที่วางขาย : 1 กันยายน 2566</p>
-      <p>จำนวนคนเล่น : 2</p>
-      <p class="desc">
-        รายละเอียด : เป็นเกมแนวสยองขวัญแบบผู้เล่นหลายคน (4 ต่อ 1)
-        ซึ่งผู้เล่นคนหนึ่งจะรับบทบาทเป็นฆาตกรที่ไล่ล่าเหยื่อ
-        และอีกสี่คนจะต้องเป็นผู้รอดชีวิตที่พยายามหลบหนีจากการตามล่า
-        พร้อมทั้งซ่อมแซมเครื่องกำเนิดไฟฟ้าเพื่อหลบหนีให้สำเร็จ
-      </p>
+    <img [src]="selectedGame.image" [alt]="selectedGame.game_name" class="game-image">
 
-      <div class="buttons">
-        <button class="btn cart"onclick="window.location.href='basket'">🛒</button>
-        <button class="btn buy" onclick="window.location.href='make-payment'">BUY</button>
-      </div>
+    <p>ประเภทเกม : {{ selectedGame.category_type }}</p>
+    <p>ราคา : {{ selectedGame.price }} Bath</p>
+    <p>วันที่วางขาย : {{ selectedGame.release_date | date:'d MMMM yyyy' }}</p>
+    <p>จำนวนยอดขาย : {{ selectedGame.sale_count }}</p>
+    <p class="desc">
+      รายละเอียด : {{ selectedGame.description }}
+    </p>
+
+    <div class="buttons">
+      <button class="btn cart" (click)="addToCart()">🛒 เพิ่มลงตะกร้า</button>
+      <button class="btn buy" (click)="goToPayment()">BUY</button>
     </div>
   </div>
+</div>
+
+
+  <script>
+    // เมื่อกดปุ่มตะกร้า
+    const addCartBtn = document.getElementById('addCartBtn');
+    addCartBtn.addEventListener('click', () => {
+      alert('เพิ่มในตะกร้า');
+    });
+  </script>
 </body>
 </html>

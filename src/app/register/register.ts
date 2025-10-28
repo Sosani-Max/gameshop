@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
+import { API_ENDPOINT } from '../../../config/constants';
 
 @Component({
   selector: 'app-register',
@@ -24,12 +25,14 @@ export class Register {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      conpass: ['', Validators.required]
     });
   }
 
-  onFileSelected(event: any) {
-    const file = event.target.files[0];
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files && input.files[0];
     if (file) {
       this.selectedFile = file;
 
@@ -39,32 +42,60 @@ export class Register {
         this.previewUrl = reader.result;
       };
       reader.readAsDataURL(file);
+    } else {
+      this.selectedFile = null;
+      this.previewUrl = null;
     }
+  }
+
+  private logFormData(fd: FormData) {
+    // วิธีดู FormData: iterate entries
+    console.log('--- FormData contents ---');
+    for (const pair of Array.from(fd.entries())) {
+      console.log(pair[0], pair[1]);
+    }
+    console.log('-------------------------');
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      const formData = new FormData();
-      formData.append('name', this.registerForm.get('name')?.value);
-      formData.append('email', this.registerForm.get('email')?.value);
-      formData.append('password', this.registerForm.get('password')?.value);
-
-      if (this.selectedFile) {
-        formData.append('avatar', this.selectedFile);
-      }
-
-      this.http.post('https://apigameshop-2yg2.vercel.app/register', formData)
-        .subscribe({
-          next: (res) => {
-            alert('Register successful!');
-            this.router.navigate(['/login']);
-          },
-          error: (err) => {
-            alert('Error: ' + (err.error?.error || err.message));
-          }
-        });
-    } else {
-      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-    }
+  if (!this.registerForm.valid) {
+    alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+    return;
   }
+
+  const { password, conpass } = this.registerForm.value;
+
+  // เช็คว่ารหัสผ่านตรงกันหรือไม่
+  if (password !== conpass) {
+    alert('รหัสผ่านไม่ตรงกัน');
+    return; // ไม่ส่งข้อมูลไปยัง API
+  }
+
+  const formData = new FormData();
+  formData.append('name', this.registerForm.get('name')?.value);
+  formData.append('email', this.registerForm.get('email')?.value);
+  formData.append('password', password);
+  if (this.selectedFile) {
+    formData.append('avatar', this.selectedFile);
+  }
+
+  console.log('API_ENDPOINT =', API_ENDPOINT);
+  // this.logFormData(formData);
+
+  this.http.post(`${API_ENDPOINT}/register`, formData, { observe: 'response' })
+    .subscribe({
+      next: (response) => {
+        console.log('Response status:', response.status);
+        console.log('Response body:', response.body);
+        alert('Register successful!');
+        this.router.navigate(['/login']);
+      },
+      error: (err: HttpErrorResponse) => {
+        console.error('HTTP error', err);
+        const msg = err.error?.error || err.message || 'Unknown error';
+        alert('Error: ' + msg);
+      }
+    });
+}
+
 }

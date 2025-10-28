@@ -1,0 +1,9 @@
+.game-image {
+  width: 100%;         /* รูปเต็ม container */
+  max-width: 400px;    /* จำกัดความกว้างสูงสุด */
+  height: auto;        /* รักษาอัตราส่วน */
+  display: block;
+  margin: 10px auto;   /* จัดกลางแนวนอน */
+  border-radius: 8px;  /* มุมโค้ง */
+  object-fit: cover;   /* crop รูปให้เต็มขอบถ้าจำเป็น */
+}

@@ -12,7 +12,6 @@
       padding: 0;
       font-family: 'Inter', sans-serif;
     }
-
     body {
       background-color: #f5f5f5;
       color: #0b1335;
@@ -27,41 +26,23 @@
       justify-content: space-between;
       align-items: center;
     }
-
     header .logo {
       font-size: 1.8rem;
       font-weight: 700;
     }
-
     header .nav {
       display: flex;
       align-items: center;
       gap: 25px;
     }
-
     header .nav a {
       color: white;
       text-decoration: none;
       font-weight: 500;
     }
-
     header .nav a:hover {
       text-decoration: underline;
     }
-
-    header .search {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    header input[type="text"] {
-      padding: 5px 10px;
-      border-radius: 4px;
-      border: none;
-      outline: none;
-    }
-
     .profile-circle {
       width: 35px;
       height: 35px;
@@ -75,159 +56,121 @@
       font-size: 14px;
       cursor: pointer;
     }
+    .logout-link:hover { text-decoration: underline; }
 
-    .logout-link {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      cursor: pointer;
+    h1 { margin: 30px 0 10px 70px; font-size: 2.2rem; }
+
+/* Top Sellers Modern */
+.top-sellers { max-width: 1000px; margin: 50px auto; position: relative; padding: 0 20px; }
+.top-sellers h2 {
+  margin-bottom: 20px;
+  color: red; /* ตัวหนังสือสีแดง */
+  font-size: 3rem; /* ขนาดใหญ่ */
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: center;
+  text-shadow: 1px 1px 2px #00000055;
+}
+.seller-container { display: flex; overflow-x: auto; gap: 20px; padding-bottom: 15px; scroll-behavior: smooth; }
+.seller-container::-webkit-scrollbar { height: 8px; }
+.seller-container::-webkit-scrollbar-thumb { background-color: #06d6a0; border-radius: 4px; }
+.seller-container::-webkit-scrollbar-track { background: #eee; }
+/* Seller Card */
+.seller-card {
+  min-width: 180px;
+  background: linear-gradient(145deg, #fff, #ffe6e6);
+  border-radius: 15px;
+  /* เอากรอบออก */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
+  text-align: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.seller-card:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 16px 28px rgba(0,0,0,0.25);
+}
+.seller-card img { width: 100%; height: 120px; object-fit: cover; border-radius: 10px; margin-bottom: 8px; }
+.seller-card .rank { font-weight: bold; color: #e30606; font-size: 1.2rem; margin-bottom: 3px; }
+.seller-card .price { color: #0b1335; font-weight: 700; font-size: 1rem; }
+
+
+/* Arrow Buttons */
+.arrow { position: absolute; top: 35%; font-size: 1.8rem; background-color: rgba(11,19,53,0.8); color: white; padding: 7px 12px; border-radius: 50%; cursor: pointer; user-select: none; transition: background-color 0.2s, transform 0.2s; }
+.arrow:hover { background-color: rgba(11,19,53,1); transform: scale(1.1); }
+.arrow.left { left: -10px; }
+.arrow.right { right: -10px; }
+
+    /* Game Section */
+    .game-section { margin: 40px 70px; }
+    .game-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
-
-    .logout-link:hover {
-      text-decoration: underline;
-    }
-
-    h1 {
-      margin: 30px 0 10px 70px;
-      font-size: 2.2rem;
-    }
-
-    /* --- Top Sellers Section --- */
-    .top-sellers {
-      position: relative;
-      padding: 20px 70px;
-    }
-
-    .top-sellers h2 {
-      margin-bottom: 15px;
+    .game-header h2 {
       font-size: 1.5rem;
       font-weight: 700;
-    }
-
-    .seller-container {
-      display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
-      gap: 20px;
-      padding-bottom: 10px;
-    }
-
-    .seller-container::-webkit-scrollbar {
-      display: none;
-    }
-
-    .seller-card {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      flex: 0 0 200px;
-      cursor: pointer;
-      position: relative;
-      transition: transform 0.2s ease-in-out;
-    }
-
-    .seller-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .seller-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-    }
-
-    .seller-card .rank {
-      position: absolute;
-      top: 8px;
-      left: 8px;
-      background-color: #0b1335;
-      color: white;
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-weight: bold;
-      font-size: 14px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    }
-
-    .seller-card .price {
-      padding: 8px 0 15px 0;
-      font-weight: 600;
-      color: #0b1335;
-    }
-
-    .arrow {
-      position: absolute;
-      top: 55%;
-      transform: translateY(-50%);
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      width: 45px;
-      height: 45px;
-      font-size: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-    }
-
-    .arrow.left {
-      left: 25px;
-    }
-
-    .arrow.right {
-      right: 25px;
-    }
-
-    /* --- Game All Section --- */
-    .game-section {
-      margin: 40px 70px;
-    }
-
-    .game-section h2 {
-      font-size: 1.5rem;
-      font-weight: 700;
-    }
-
-    .search-add {
       display: flex;
       align-items: center;
       gap: 10px;
-      margin: 15px 0;
     }
 
-    .search-add input {
-      flex: 1;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 6px;
-      background-color: #ddd;
+.blue-circle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background-color: #0b1335;
+  color: white;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.blue-circle:hover {
+  background-color: #1a237e; /* น้ำเงินเข้มตอน hover */
+}
+
+    /* Search UI */
+    .search-wrapper {
+      position: relative;
+      width: 250px;
+      margin-top: 15px;
     }
 
-    .add-btn {
-      background: white;
-      border: 2px solid #0b1335;
+    .search-wrapper input {
+      width: 100%;
+      padding: 8px 40px 8px 12px;
+      border-radius: 50px;
+      border: 1px solid #ccc;
+      outline: none;
+      font-size: 0.95rem;
+      background-color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .search-wrapper .search-icon {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
-      width: 35px;
-      height: 35px;
+      background-color: #FFD700;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 20px;
       cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .add-btn:hover {
-      background: #0b1335;
-      color: white;
+      color: #0b1335;
+      font-size: 14px;
     }
 
     .game-grid {
@@ -236,11 +179,10 @@
       gap: 25px;
       margin-top: 20px;
     }
-
     .game-card {
       background: white;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       transition: transform 0.2s;
       cursor: pointer;
@@ -248,181 +190,75 @@
       text-decoration: none;
       color: inherit;
     }
-
-    .game-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .game-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    .game-card .name {
-      font-weight: bold;
-      padding-top: 10px;
-    }
-
-    .game-card .price {
-      padding: 5px 0 15px;
-      color: #333;
-    }
+    .game-card:hover { transform: translateY(-5px); }
+    .game-card img { width: 100%; height: 180px; object-fit: cover; }
+    .game-card .name { font-weight: bold; padding-top: 10px; }
+    .game-card .price { padding: 5px 0 15px; color: #333; }
   </style>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
   <!-- Header -->
   <header>
     <div class="logo">GameShop</div>
     <div class="nav">
       <a href="admin-profile">
-        <div class="profile-circle">A</div>
+        <div class="profile-circle">
+          <img *ngIf="avatarUrl" [src]="avatarUrl" alt="Avatar">
+          <span *ngIf="!avatarUrl">{{ name?.charAt(0) }}</span>
+        </div>
       </a>
       <a href="admin" class="logout-link" style="color:red;">Home</a>
       <a href="promotion" class="logout-link">Promotion</a>
       <a href="user" class="logout-link">User</a>
-      <a href="login" class="logout-link">Log-out</a>
     </div>
   </header>
 
   <h1>Admin</h1>
 
- <!-- Top Sellers -->
+<!-- Top Sellers -->
 <section class="top-sellers">
   <h2>Top Sellers</h2>
-  <div class="arrow left" onclick="scrollLeft()">&#8592;</div>
-  <div class="arrow right" onclick="scrollRight()">&#8594;</div>
-
+  <div class="arrow left" (click)="scrollLeft()">&#8592;</div>
+  <div class="arrow right" (click)="scrollRight()">&#8594;</div>
   <div class="seller-container" id="sellerContainer">
-    <a href="namegame" class="seller-card">
-      <div class="rank">1</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/0/00/Arena_of_Valor_logo.jpg" alt="ROV">
-      <div class="price">99 Bath</div>
-    </a>
-    <a href="namegame" class="seller-card">
-      <div class="rank">2</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-      <div class="price">99 Bath</div>
-    </a>
-    <a href="namegame" class="seller-card">
-      <div class="rank">3</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png" alt="Minecraft">
-      <div class="price">499 Bath</div>
-    </a>
-    <a href="namegame" class="seller-card">
-      <div class="rank">4</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/d/d5/Dead_by_Daylight_Cover_Art.jpg" alt="Dead by Daylight">
-      <div class="price">259 Bath</div>
-    </a>
-        <a href="namegame" class="seller-card">
-      <div class="rank">5</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/d/d5/Dead_by_Daylight_Cover_Art.jpg" alt="Dead by Daylight">
-      <div class="price">259 Bath</div>
-    </a>
-            <a href="namegame" class="seller-card">
-      <div class="rank">6</div>
-      <img src="https://upload.wikimedia.org/wikipedia/en/d/d5/Dead_by_Daylight_Cover_Art.jpg" alt="Dead by Daylight">
-      <div class="price">259 Bath</div>
-    </a>
-  </div>
+  <a *ngFor="let game of topGames" class="seller-card" (click)="onSelectGame(game)">
+    <div class="rank">{{ game.rank }}</div>
+    <img [src]="game.image" [alt]="game.game_name">
+    <div class="price">{{ game.price }} Bath</div>
+  </a>
+</div>
+
+
 </section>
 
-  <!-- Game All Section -->
+  <!-- Game Section -->
   <section class="game-section">
-    <h2>Game All</h2>
-
-    <div class="search-add">
-      <input type="text" placeholder="search">
-      <a href="addgame" class="add-btn">+</a>
-      <span>Add</span>
+    <div class="game-header">
+<h2>
+  All Game
+  <a href="addgame" class="blue-circle">+</a>
+</h2>
     </div>
 
-    <div class="game-grid">
-      <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V_cover.jpg" alt="GTA V">
-        <div class="name">GTA V</div>
-        <div class="price">169 Bath</div>
-      </a>
+    <div class="search-wrapper">
+      <input type="text" placeholder="Search game..." [(ngModel)]="searchTerm" (input)="onSearchChange()" />
+      <div class="search-icon">🔍</div>
+    </div>
 
-      <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/5/5f/The_Sims_4_cover.jpg" alt="The Sims">
-        <div class="name">The Sims</div>
-        <div class="price">789 Bath</div>
-      </a>
-
-      <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/7/7d/PUBG_cover_art.jpg" alt="PUBG">
-        <div class="name">PUBG</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-      <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4d/Call_of_Duty_Modern_Warfare_2_cover.jpg" alt="COD">
-        <div class="name">Call of Duty</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-      <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
-      </a>
-
-            <a href="namegame" class="game-card">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/4e/Roblox_Logo.png" alt="Roblox">
-        <div class="name">Roblox</div>
-        <div class="price">123 Bath</div>
+    <div class="game-grid" id="gameGrid">
+      <a *ngFor="let game of games" class="game-card" (click)="onSelectGame(game)">
+        <img [src]="game.image" [alt]="game.game_name" />
+        <div class="game-name">{{ game.game_name }}</div>
+        <div class="game-price">{{ game.price }} Bath</div>
       </a>
     </div>
   </section>
 
   <script>
     const sellerContainer = document.getElementById('sellerContainer');
-
-    function scrollLeft() {
-      sellerContainer.scrollBy({ left: -220, behavior: 'smooth' });
-    }
-
-    function scrollRight() {
-      sellerContainer.scrollBy({ left: 220, behavior: 'smooth' });
-    }
+    function scrollLeft() { sellerContainer.scrollBy({ left: -220, behavior: 'smooth' }); }
+    function scrollRight() { sellerContainer.scrollBy({ left: 220, behavior: 'smooth' }); }
   </script>
 </body>
 </html>

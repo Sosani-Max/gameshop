@@ -1,0 +1,18 @@
+.profile-circle {
+  width: 50px;       /* ขนาดวงกลม */
+  height: 50px;
+  border-radius: 50%; /* ทำให้เป็นวงกลม */
+  overflow: hidden;   /* ตัดส่วนเกินของรูป */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ccc;
+  font-weight: bold;
+  color: white;
+}
+
+.profile-circle img {
+  width: 100%;        /* เติมเต็ม div */
+  height: 100%;       /* เติมเต็ม div */
+  object-fit: cover;  /* crop รูปให้พอดีวงกลม */
+}

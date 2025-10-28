@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { API_ENDPOINT } from '../../../config/constants';
+import { AppService } from '../app.service'; 
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class Login {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private appService: AppService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -27,10 +30,24 @@ export class Login {
 
   onLogin() {
     if (this.loginForm.valid) {
-      this.http.post('https://apigameshop-2yg2.vercel.app/login', this.loginForm.value)
+      this.http.post(`${API_ENDPOINT}/login`, this.loginForm.value)
         .subscribe({
           next: (res: any) => {
-            // ตรวจสอบ role ที่ backend ส่งมา
+          if (!res.uid) {
+            alert('ไม่พบข้อมูลผู้ใช้');
+            return;
+          }
+
+          // เก็บค่า user ใน AppService
+          this.appService.setUser({
+            uid: res.uid,
+            name: res.name,
+            email: res.email,
+            role: res.role,
+            avatarUrl: res.avatarUrl || null,
+            wallet: res.wallet,
+          });
+
             if (res.role === 'admin') {
               alert(res.message || 'เข้าสู่ระบบสำเร็จ (Admin)');
               this.router.navigate(['/admin']); // ไปหน้า admin
